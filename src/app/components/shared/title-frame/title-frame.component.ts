@@ -18,16 +18,16 @@ export class TitleFrameComponent implements OnInit {
   ngOnInit(): void {
     switch (this.numero) {
       case 1:
-        this.color = 'rgb(275, 165, 0)';
+        this.color = '#235aba';
         break;
       case 2:
-        this.color = 'rgb(0, 165, 165)';
+        this.color = '#323C37';
         break;
       case 3:
-        this.color = 'rgb(235, 50, 25)';
+        this.color = '#EB3219';
         break;
       case 4:
-        this.color = 'rgb(50, 60, 55)';
+        this.color = '#157582';
         break;
         break;
       default:

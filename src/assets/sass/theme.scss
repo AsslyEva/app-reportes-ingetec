@@ -368,14 +368,13 @@ table.dataTable {
 
   .dataTables_filter {
     display: flex;
-    justify-content: flex-start;
-    width: 205px;
+    width: 100%;
     position: relative;
     z-index: 20;
 
     label {
       font-family: $ff-gotham-medium;
-      font-size: 0.8rem;
+      font-size: 1rem;
 
       .form-control {
         border: none;

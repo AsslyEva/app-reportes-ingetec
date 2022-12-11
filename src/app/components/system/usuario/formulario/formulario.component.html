@@ -1,175 +1,175 @@
 <div class="content">
-    <app-title-frame
-    [title]="'INGRESE DATOS EN EL FORMULARIO'"
-    [numero]="1"
-    ></app-title-frame> 
+  <app-title-frame
+  [title]="'INGRESE DATOS EN EL FORMULARIO'"
+  [numero]="1"
+  ></app-title-frame> 
     
-        <form class="content-info col-12 d-flex justify-content-center">
-            <!-- <p>INGRESA LOS DATOS REQUERIDOS</p> -->
-            <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="row form-inf">
-                    <mat-vertical-stepper [linear]="false" #stepper  class="col-md-12">
-                        <mat-step>
-                          <form [formGroup]="SedeFormGroup">
-                            <ng-template matStepLabel>Sede</ng-template>
-                            <mat-form-field  class="col-md-12" appearance="fill">
-                                <mat-label>Seleccione Sede</mat-label>
-                                <mat-select>
-                                  <mat-option value="primary">TARMA</mat-option>
-                                  <mat-option value="primary">LA OROYA</mat-option>
-                                  <mat-option value="primary">CARHUAMAYO</mat-option>
+  <form class="content-info col-12 d-flex justify-content-center">
+      <!-- <p>INGRESA LOS DATOS REQUERIDOS</p> -->
+      <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row form-inf">
+              <mat-vertical-stepper [linear]="false" #stepper  class="col-md-12">
+                  <mat-step>
+                    <form [formGroup]="SedeFormGroup">
+                      <ng-template matStepLabel>Sede</ng-template>
+                      <mat-form-field  class="col-md-12" appearance="fill">
+                          <mat-label>Seleccione Sede</mat-label>
+                          <mat-select>
+                            <mat-option value="primary">TARMA</mat-option>
+                            <mat-option value="primary">LA OROYA</mat-option>
+                            <mat-option value="primary">CARHUAMAYO</mat-option>
 
-                                </mat-select>
-                            </mat-form-field>
-                            <div>
-                              <button mat-button matStepperNext>Siguiente</button>
-                            </div>
-                          </form>
-                        </mat-step>
-                        <mat-step >
-                          <form [formGroup]="LiderFormGroup">
-                            <ng-template matStepLabel>Lider de Equipo</ng-template>
-                            <mat-form-field  class="col-md-12" appearance="outline">
-                                <mat-label>Ingrese Nombre de Lider de Equipo</mat-label>
-                                <input matInput placeholder="Placeholder">
-                                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                                <mat-hint>Hint</mat-hint>
-                              </mat-form-field>
-                            <div>
-                              <button mat-button matStepperPrevious>Anterior</button>
-                              <button mat-button matStepperNext>Siguiente</button>
-                            </div>
-                          </form>
-                        </mat-step>
-                        <mat-step >
-                            <form [formGroup]="IntegrantesFormGroup">
-                              <ng-template matStepLabel>Integrantes de Equipo</ng-template>
-                              <mat-form-field  class="col-md-12" appearance="outline">
-                                  <mat-label>Ingrese Integrantes de Equipo</mat-label>
-                                  <input matInput placeholder="Placeholder">
-                                  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                                  <mat-hint>Hint</mat-hint>
-                                </mat-form-field>
-                              <div>
-                                <button mat-button matStepperPrevious>Anterior</button>
-                                <button mat-button matStepperNext>Siguiente</button>
-                              </div>
-                            </form>
-                        </mat-step>
-                        <mat-step>
-                            <form [formGroup]="SegmentoFormGroup">
-                              <ng-template matStepLabel>Segmento Realizado</ng-template>
-                              <mat-form-field  class="col-md-12" appearance="fill">
-                                  <mat-label>Seleccione Segmento Realizado (Pueden ser mas de uno)</mat-label>
-                                  <mat-select>
-                                    <mat-option value="primary">CONEXIONES NUEVAS BT</mat-option>
-                                    <mat-option value="primary">REINSTALACION DE SERVICIO RS</mat-option>
-                                    <mat-option value="primary">ACTIVIDADES COMERCIALES COMPLEMENTARIAS AC</mat-option>
-                                    <mat-option value="primary"> ... </mat-option>
-                                  </mat-select>
-                              </mat-form-field>
-                              <div>
-                                <button mat-button matStepperPrevious>Anterior</button>
-                                <button mat-button matStepperNext>Siguiente</button>
-                              </div>
-                            </form>
-                        </mat-step>
-                        <mat-step>
-                            <form [formGroup]="ActividadFormGroup">
-                              <ng-template matStepLabel>Actividades Realizadas</ng-template>
-                              <mat-form-field  class="col-md-12" appearance="fill">
-                                  <mat-label>Seleccione Actividad Realizada (puede ser mas de uno)</mat-label>
-                                  <mat-select>
-                                    <mat-option value="primary">Aéreo Monofásico</mat-option>
-                                    <mat-option value="primary">Aéreo Trifásico</mat-option>
-                                    <mat-option value="primary">Subterráneo Monofásico sin rotura ni resane de vereda</mat-option>
-                                    <mat-option value="primary"> ... </mat-option>
-                                  </mat-select>
-                              </mat-form-field>
-                              <div>
-                                <button mat-button matStepperPrevious>Anterior</button>
-                                <button mat-button matStepperNext>Siguiente</button>
-                              </div>
-                            </form>
-                        </mat-step>
-
-                        <mat-step>
-                            <form [formGroup]="CantidadFormGroup">
-                              <ng-template matStepLabel>Cantidades Ejecutadas</ng-template>
-                              <mat-form-field  appearance="fill">
-                                <mat-label>URBANO</mat-label>
-                                <input matInput type="number">
-                              </mat-form-field>
-                              <mat-form-field  appearance="fill">
-                                <mat-label>RURAL</mat-label>
-                                <input matInput type="number">
-                              </mat-form-field>
-                              <div>
-                                <button mat-button matStepperPrevious>Anterior</button>
-                                <button mat-button matStepperNext>Siguiente</button>
-                              </div>
-                            </form>
-                        </mat-step>
-
-                        <mat-step>
-                          <form [formGroup]="FechaFormGroup">
-                            <ng-template matStepLabel>Fecha de Acividad</ng-template>
-                            <mat-form-field  class="col-md-12" appearance="fill">
-                                <mat-label>Ingrese Fecha de Actividad Realizada</mat-label>
-                                <input matInput [matDatepicker]="picker" (focus)="picker.open()">
-                              </mat-form-field>
-                            <mat-datepicker #picker></mat-datepicker>
-                            <div>
-                              <button mat-button matStepperPrevious>Anterior</button>
-                              <button mat-button matStepperNext>Siguiente</button>
-                            </div>
-                          </form>
-                        </mat-step>
-
-                        <mat-step>
-                            <form [formGroup]="EvidenciaFormGroup">
-                              <ng-template matStepLabel>Subir Evidencia</ng-template>
-                                <div class="col-md-12">  
-                                    <mat-label>Subir evidencia</mat-label>
-                                    <p class="confirm-button">  
-                                        <a>  
-                                            <input #inputfile type="file" name="file" id="file" class="inputfile" (change)="clearNameInput()" accept=".pdf, .jpg, .png">
-                                            <label class="btn btn-evidence" for="file">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path class="labelSVG" d="M11 15h2V9h3l-4-5-4 5h3z"/><path class="labelSVG" d="M20 18H4v-7H2v7c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2v-7h-2v7z"/></svg>
-                                            {{nameLabel}}
-                                            </label>
-                                        </a>  
-                                    </p>  
-                                </div>  
-                            </form>
-                        </mat-step>
-
-
-
-                        <mat-step>
-                          <ng-template matStepLabel>ENVIAR</ng-template>
-                          Para enviar haga click en "Guardar"
-                          <div>
-                            <button mat-button matStepperPrevious>Anterior</button>
-                                  
-                        <div class="options col-12 justify-content-center">
-                            <button
-                                mat-flat-button
-                                class="mt-4 m-1 mb-3 col-xs-3 br-40px"
-                                type="button"
-                                color="warn"
-                                >
-                                Guardar<mat-icon class="icon">save</mat-icon>&nbsp;
-                            </button>
+                          </mat-select>
+                      </mat-form-field>
+                      <div>
+                        <button mat-button matStepperNext>Siguiente</button>
+                      </div>
+                    </form>
+                  </mat-step>
+                  <mat-step >
+                    <form [formGroup]="LiderFormGroup">
+                      <ng-template matStepLabel>Lider de Equipo</ng-template>
+                      <mat-form-field  class="col-md-12" appearance="outline">
+                          <mat-label>Ingrese Nombre de Lider de Equipo</mat-label>
+                          <input matInput placeholder="Placeholder">
+                          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                          <mat-hint>Hint</mat-hint>
+                        </mat-form-field>
+                      <div>
+                        <button mat-button matStepperPrevious>Anterior</button>
+                        <button mat-button matStepperNext>Siguiente</button>
+                      </div>
+                    </form>
+                  </mat-step>
+                  <mat-step >
+                      <form [formGroup]="IntegrantesFormGroup">
+                        <ng-template matStepLabel>Integrantes de Equipo</ng-template>
+                        <mat-form-field  class="col-md-12" appearance="outline">
+                            <mat-label>Ingrese Integrantes de Equipo</mat-label>
+                            <input matInput placeholder="Placeholder">
+                            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                            <mat-hint>Hint</mat-hint>
+                          </mat-form-field>
+                        <div>
+                          <button mat-button matStepperPrevious>Anterior</button>
+                          <button mat-button matStepperNext>Siguiente</button>
                         </div>
+                      </form>
+                  </mat-step>
+                  <mat-step>
+                      <form [formGroup]="SegmentoFormGroup">
+                        <ng-template matStepLabel>Segmento Realizado</ng-template>
+                        <mat-form-field  class="col-md-12" appearance="fill">
+                            <mat-label>Seleccione Segmento Realizado (Pueden ser mas de uno)</mat-label>
+                            <mat-select>
+                              <mat-option value="primary">CONEXIONES NUEVAS BT</mat-option>
+                              <mat-option value="primary">REINSTALACION DE SERVICIO RS</mat-option>
+                              <mat-option value="primary">ACTIVIDADES COMERCIALES COMPLEMENTARIAS AC</mat-option>
+                              <mat-option value="primary"> ... </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div>
+                          <button mat-button matStepperPrevious>Anterior</button>
+                          <button mat-button matStepperNext>Siguiente</button>
+                        </div>
+                      </form>
+                  </mat-step>
+                  <mat-step>
+                      <form [formGroup]="ActividadFormGroup">
+                        <ng-template matStepLabel>Actividades Realizadas</ng-template>
+                        <mat-form-field  class="col-md-12" appearance="fill">
+                            <mat-label>Seleccione Actividad Realizada (puede ser mas de uno)</mat-label>
+                            <mat-select>
+                              <mat-option value="primary">Aéreo Monofásico</mat-option>
+                              <mat-option value="primary">Aéreo Trifásico</mat-option>
+                              <mat-option value="primary">Subterráneo Monofásico sin rotura ni resane de vereda</mat-option>
+                              <mat-option value="primary"> ... </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div>
+                          <button mat-button matStepperPrevious>Anterior</button>
+                          <button mat-button matStepperNext>Siguiente</button>
+                        </div>
+                      </form>
+                  </mat-step>
 
-                            <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
-                          </div>
-                        </mat-step>
-                      </mat-vertical-stepper>
-                </div>
-            </div>     
-        </form>
+                  <mat-step>
+                      <form [formGroup]="CantidadFormGroup">
+                        <ng-template matStepLabel>Cantidades Ejecutadas</ng-template>
+                        <mat-form-field  appearance="fill">
+                          <mat-label>URBANO</mat-label>
+                          <input matInput type="number">
+                        </mat-form-field>
+                        <mat-form-field  appearance="fill">
+                          <mat-label>RURAL</mat-label>
+                          <input matInput type="number">
+                        </mat-form-field>
+                        <div>
+                          <button mat-button matStepperPrevious>Anterior</button>
+                          <button mat-button matStepperNext>Siguiente</button>
+                        </div>
+                      </form>
+                  </mat-step>
+
+                  <mat-step>
+                    <form [formGroup]="FechaFormGroup">
+                      <ng-template matStepLabel>Fecha de Acividad</ng-template>
+                      <mat-form-field  class="col-md-12" appearance="fill">
+                          <mat-label>Ingrese Fecha de Actividad Realizada</mat-label>
+                          <input matInput [matDatepicker]="picker" (focus)="picker.open()">
+                        </mat-form-field>
+                      <mat-datepicker #picker></mat-datepicker>
+                      <div>
+                        <button mat-button matStepperPrevious>Anterior</button>
+                        <button mat-button matStepperNext>Siguiente</button>
+                      </div>
+                    </form>
+                  </mat-step>
+
+                  <mat-step>
+                      <form [formGroup]="EvidenciaFormGroup">
+                        <ng-template matStepLabel>Subir Evidencia</ng-template>
+                          <div class="col-md-12">  
+                              <mat-label>Subir evidencia</mat-label>
+                              <p class="confirm-button">  
+                                  <a>  
+                                      <input #inputfile type="file" name="file" id="file" class="inputfile" (change)="clearNameInput()" accept=".pdf, .jpg, .png">
+                                      <label class="btn btn-evidence" for="file">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path class="labelSVG" d="M11 15h2V9h3l-4-5-4 5h3z"/><path class="labelSVG" d="M20 18H4v-7H2v7c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2v-7h-2v7z"/></svg>
+                                      {{nameLabel}}
+                                      </label>
+                                  </a>  
+                              </p>  
+                          </div>  
+                      </form>
+                  </mat-step>
+
+
+
+                  <mat-step>
+                    <ng-template matStepLabel>ENVIAR</ng-template>
+                    Para enviar haga click en "Guardar"
+                    <div>
+                      <button mat-button matStepperPrevious>Anterior</button>
+                            
+                  <div class="options col-12 justify-content-center">
+                      <button
+                          mat-flat-button
+                          class="mt-4 m-1 mb-3 col-xs-3 br-40px"
+                          type="button"
+                          color="warn"
+                          >
+                          Guardar<mat-icon class="icon">save</mat-icon>&nbsp;
+                      </button>
+                  </div>
+
+                      <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+                    </div>
+                  </mat-step>
+                </mat-vertical-stepper>
+          </div>
+      </div>     
+  </form>
       
       
       
@@ -199,12 +199,12 @@
       </div> -->
       
       
-      <ngx-spinner
-          bdColor = "rgba(14,14,14,0.8)"
-          size = "large"
-          color = "#9ad424"
-          type = "square-jelly-box"
-          [fullScreen] = "false">
-          <p style="color: white" > Cargando, espere por favor </p>
-      </ngx-spinner>
+  <ngx-spinner
+      bdColor = "rgba(14,14,14,0.8)"
+      size = "large"
+      color = "#9ad424"
+      type = "square-jelly-box"
+      [fullScreen] = "false">
+      <p style="color: white" > Cargando, espere por favor </p>
+  </ngx-spinner>
 </div>

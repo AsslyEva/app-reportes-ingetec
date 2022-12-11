@@ -60,15 +60,31 @@ p {
 }
 
 @keyframes latido {
-  0%,  50% ,  100%    { 
+  0%, 15% , 30% , 45% , 60% , 75% , 90% , 100%    { 
       transform:scale(1);
       animation-timing-function: ease-in;
   }
-    25%, 75%            { 
-      color: rgb(7, 7, 7);
-      transform:scale(1.25);
-      animation-timing-function: ease-out;
+  0%, 15%            { 
+    color: $ingetec-red;
+    transform:scale(1.25);
+    animation-timing-function: ease-out;
   } 
+  30%, 45%            { 
+    color: $ingetec-yellow;
+    transform:scale(1.25);
+    animation-timing-function: ease-out;
+  }
+  60%, 75%            { 
+    color: $ingetec-cyan;
+    transform:scale(1.25);
+    animation-timing-function: ease-out;
+  }
+
+  90%, 100%            { 
+    color: $ingetec-white;
+    transform:scale(1.25);
+    animation-timing-function: ease-out;
+  }
 }
 
 // mat-sidenav-content{
@@ -171,13 +187,27 @@ app-menu-item{
 
 
 /*Estilos para datatable*/
+.content-tabla{
+  padding: 2rem 5rem 2rem 5rem;
+  background: #ffff;
+}
+
+table.dataTable thead th {
+  text-align: center !important;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+  vertical-align: middle !important;
+}
 .top .dataTables_info {
   font-size: 1rem;
 }
 .table-dark-ingetec{
   width: 100%;
   thead{
-      background-color: $ingetec-gray-dark;
+      background-color: $ingetec-dark;
       color: $ingetec-white;
       font-size: 0.94rem;
       font-family: 'Gotham-Black';

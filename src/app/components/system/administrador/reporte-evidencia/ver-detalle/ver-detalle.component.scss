@@ -1,0 +1,214 @@
+@use 'src/assets/sass/general.scss' as g;
+
+
+// .requisitos{
+//     border: 1px solid #323C37;
+//     width: 100%;
+//     height: 90%;
+//     overflow: auto;
+//     margin-top: 24px;
+//     position: relative;
+//     justify-content: center;
+//     align-items: center;
+//     padding: 0;
+// }
+
+// .form-requisitos{
+//     background: #f3f3f3;
+//     padding: 0.7rem ;
+//     margin: 0rem 0rem 2rem 0;
+//     width: 100%;    
+//     border: none;
+//     mat-label{
+//         font-size: 1.5rem;
+//         font-family: 'AvenirLTStd-Book';
+//         color: rgb(66, 66, 66);
+//     }
+// }
+
+
+.content-info{
+    width: 100%;
+    height: 100%;
+
+}
+
+.col-12{
+    height: 100% !important;
+} 
+
+
+
+.form-descripcion{
+    margin: 0rem 0rem 2rem 0;
+}
+
+table{
+    border: none;
+}
+
+.form-pdf{
+    background: #f3f3f3;
+    padding: 0.7rem ;
+    height: calc(75vh - 1rem);
+    margin: 0rem 0rem 2rem 0;
+    width: 93%;
+    border: none;
+    iframe{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.options{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    border-radius: 4rem;
+    align-content: flex-start;                                                                                                                                         
+    mat-icon{
+        margin: 0 0 0 1rem;
+    }
+}
+
+.form-inf{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0 0 2rem 0a;
+
+    .form-item{
+        width: 100%;
+    }
+
+    .form-tasa{
+        width: 100%;
+        flex-wrap: wrap;
+        background: #f3f3f3;
+
+        mat-label{
+            font-size: 1.2rem;
+            font-family: 'AvenirLTStd-Book';
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+            padding: 0rem 0 0 0.9rem;
+        }
+        table{
+            border: none;
+        }
+        th{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            vertical-align: middle;
+        }
+        td{
+            font-size: 1.2rem;
+            font-family: 'AvenirLTStd-Book';
+            color: rgb(0, 0, 0);
+        }
+
+        .add{
+            text-align: center;
+            border-radius: 0.9rem;
+            border: none;
+            background-color: g.$ingetec-green;
+            width: 5rem;
+            height: 4rem;
+            color: #f3f3f3;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .delete{
+            text-align: center;
+            border-radius: 0.5rem;
+            border: none;
+            background-color: g.$ingetec-red;
+            width: 5rem;
+            height: 4rem;
+
+            img{
+                width: 35%;
+                color: #f3f3f3;
+                font-size: 2.4rem;
+                margin: 0.1 0 0 -0.1rem;
+            }
+
+        }
+    }
+}
+
+mat-label{
+    font-size: 1.3rem;
+    font-family: 'AvenirLTStd-Book';
+    color: rgb(0, 0, 0);
+    margin: 0 0 2rem 0;
+    font-weight: bold;
+}
+
+input{
+    color: #000000;
+    padding: 0.3rem;
+}
+
+
+
+
+
+// // cargar-pdf
+
+// .inputfile {
+//     width: 0.1rem;
+//     height: 0.1rem;
+//     opacity: 0;
+//     overflow: hidden;
+//     position: absolute;
+//     z-index: -1;
+// }
+
+// label{
+//     color: #ffff;
+//     font-size: 1.2;
+// }
+
+
+// mat-icon{
+//     justify-content: center;
+//     align-items: center;
+//     text-align: center;
+//     margin: 0 0 0 2rem;
+// }
+
+
+  
+@media (max-width:990px){
+
+    .d-flex {
+        display: -ms-flexbox !important;
+        display: flex!important;
+        flex-direction: column-reverse;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .content-info{
+        width: 100%;
+        padding: 0;
+    }
+    .button-bold{
+        display: flex;
+    }
+
+    
+    .form-inf{
+        display: flexbox;
+        width: 100%;
+
+    }
+    
+}

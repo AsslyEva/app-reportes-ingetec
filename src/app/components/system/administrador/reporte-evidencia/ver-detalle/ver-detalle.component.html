@@ -1,0 +1,35 @@
+<app-titulo-dialog [titulo]="titulo"></app-titulo-dialog>
+
+<div class="content-dialog">
+  <div class="col-12 d-flex justify-content-center">
+
+  </div>
+  <div class="options col-12 justify-content-center">
+    <button mat-flat-button
+            class="mt-4 m-1 mb-3"
+            type="button"
+            color="warn"
+            matTooltip="Cerrar modal"
+            (click)="cerrar()"
+      >
+      Cerrar<mat-icon class="icon">close</mat-icon>&nbsp;
+    </button>
+    <button mat-flat-button
+          class="mt-4 m-1 mb-3"
+          type="button"
+          color="primary"
+          matTooltip="Cerrar modal"
+      >
+      Descargar<mat-icon class="icon">download</mat-icon>&nbsp;
+</button>
+</div>
+
+
+<ngx-spinner 
+    bdColor = "rgba(14,14,14,0.8)" 
+    size = "large" 
+    color = "#9ad424" 
+    type = "square-jelly-box" 
+    [fullScreen] = "false">
+    <p style="color: white" > Cargando, espere por favor </p>
+</ngx-spinner>

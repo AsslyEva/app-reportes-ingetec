@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -7,6 +7,8 @@ import { ReportePersonalComponent } from './reporte-personal/reporte-personal.co
 import { ReporteEvidenciaComponent } from './reporte-evidencia/reporte-evidencia.component';
 import { AdministradorRoutingModule } from './administrador-routing.module';
 import { SharedModule } from '../../shared/shared.module';
+import { VerDetalleComponent } from './reporte-evidencia/ver-detalle/ver-detalle.component';
+import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 
 
 @NgModule({
@@ -21,8 +23,12 @@ import { SharedModule } from '../../shared/shared.module';
     ReporteActividadesComponent,
     ReportePersonalComponent,
     ReporteEvidenciaComponent,
-
-    ]
+    VerDetalleComponent,
+  ],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'es' },
+    { provide: MAT_DATE_LOCALE, useValue: 'es-PE' },
+  ]
 })
 
 
