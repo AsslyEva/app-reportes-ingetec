@@ -22,22 +22,21 @@
                           </mat-select>
                       </mat-form-field>
                       <div>
-                        <button mat-button matStepperNext>Siguiente</button>
+                        <!-- <button mat-button matStepperNext>Siguiente</button> -->
                       </div>
                     </form>
                   </mat-step>
                   <mat-step >
                     <form [formGroup]="LiderFormGroup">
                       <ng-template matStepLabel>Lider de Equipo</ng-template>
-                      <mat-form-field  class="col-md-12" appearance="outline">
+                      <mat-form-field  class="col-md-12" appearance="fill">
                           <mat-label>Ingrese Nombre de Lider de Equipo</mat-label>
-                          <input matInput placeholder="Placeholder">
+                          <input matInput placeholder="Ingrese Nombre del lider de equipo">
                           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                          <mat-hint>Hint</mat-hint>
                         </mat-form-field>
                       <div>
-                        <button mat-button matStepperPrevious>Anterior</button>
-                        <button mat-button matStepperNext>Siguiente</button>
+                        <!-- <button mat-button matStepperNext>Siguiente</button>
+                        <button mat-button matStepperPrevious>Anterior</button> -->
                       </div>
                     </form>
                   </mat-step>
@@ -46,13 +45,11 @@
                         <ng-template matStepLabel>Integrantes de Equipo</ng-template>
                         <mat-form-field  class="col-md-12" appearance="outline">
                             <mat-label>Ingrese Integrantes de Equipo</mat-label>
-                            <input matInput placeholder="Placeholder">
-                            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                            <mat-hint>Hint</mat-hint>
+                            <textarea matInput placeholder="Ingrese a los integrantes y separe con ENTER"></textarea>
                           </mat-form-field>
                         <div>
-                          <button mat-button matStepperPrevious>Anterior</button>
-                          <button mat-button matStepperNext>Siguiente</button>
+                          <!-- <button mat-button matStepperNext>Siguiente</button>
+                          <button mat-button matStepperPrevious>Anterior</button> -->
                         </div>
                       </form>
                   </mat-step>
@@ -69,8 +66,8 @@
                             </mat-select>
                         </mat-form-field>
                         <div>
-                          <button mat-button matStepperPrevious>Anterior</button>
-                          <button mat-button matStepperNext>Siguiente</button>
+                          <!-- <button mat-button matStepperNext>Siguiente</button>
+                          <button mat-button matStepperPrevious>Anterior</button> -->
                         </div>
                       </form>
                   </mat-step>
@@ -87,26 +84,27 @@
                             </mat-select>
                         </mat-form-field>
                         <div>
-                          <button mat-button matStepperPrevious>Anterior</button>
-                          <button mat-button matStepperNext>Siguiente</button>
+                          <!-- <button mat-button matStepperNext>Siguiente</button>
+                          <button mat-button matStepperPrevious>Anterior</button> -->
                         </div>
                       </form>
                   </mat-step>
 
                   <mat-step>
-                      <form [formGroup]="CantidadFormGroup">
+                      <form [formGroup]="CantidadFormGroup" class="col-md-12" >
                         <ng-template matStepLabel>Cantidades Ejecutadas</ng-template>
-                        <mat-form-field  appearance="fill">
+                        <mat-label class="col-md-12">Solo puede ingresar cantidades en número</mat-label>
+                        <mat-form-field  class="col-md-6" appearance="fill">
                           <mat-label>URBANO</mat-label>
                           <input matInput type="number">
                         </mat-form-field>
-                        <mat-form-field  appearance="fill">
+                        <mat-form-field class="col-md-6"  appearance="fill">
                           <mat-label>RURAL</mat-label>
                           <input matInput type="number">
                         </mat-form-field>
                         <div>
-                          <button mat-button matStepperPrevious>Anterior</button>
-                          <button mat-button matStepperNext>Siguiente</button>
+                          <!-- <button mat-button matStepperNext>Siguiente</button>
+                          <button mat-button matStepperPrevious>Anterior</button> -->
                         </div>
                       </form>
                   </mat-step>
@@ -114,33 +112,42 @@
                   <mat-step>
                     <form [formGroup]="FechaFormGroup">
                       <ng-template matStepLabel>Fecha de Acividad</ng-template>
-                      <mat-form-field  class="col-md-12" appearance="fill">
-                          <mat-label>Ingrese Fecha de Actividad Realizada</mat-label>
-                          <input matInput [matDatepicker]="picker" (focus)="picker.open()">
-                        </mat-form-field>
-                      <mat-datepicker #picker></mat-datepicker>
+                      <mat-form-field class="col-md-12 date" appearance="fill">
+                        <mat-label>Ingrese Fecha de Actividad</mat-label>
+                        <input matInput [matDatepicker]="picker">
+                        <div>
+                          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                        </div>
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+    
+                      </mat-form-field>
                       <div>
-                        <button mat-button matStepperPrevious>Anterior</button>
-                        <button mat-button matStepperNext>Siguiente</button>
+                        <!-- <button mat-button matStepperNext>Siguiente</button>
+                        <button mat-button matStepperPrevious>Anterior</button> -->
                       </div>
                     </form>
                   </mat-step>
 
                   <mat-step>
                       <form [formGroup]="EvidenciaFormGroup">
-                        <ng-template matStepLabel>Subir Evidencia</ng-template>
+                        <ng-template matStepLabel>Subir Evidencia </ng-template>
                           <div class="col-md-12">  
                               <mat-label>Subir evidencia</mat-label>
                               <p class="confirm-button">  
                                   <a>  
-                                      <input #inputfile type="file" name="file" id="file" class="inputfile" (change)="clearNameInput()" accept=".pdf, .jpg, .png">
+                                      <input #inputfile type="file" name="file" id="file" class="inputfile" (change)="clearNameInput()" accept=".jpg , .png , .jpeg">
                                       <label class="btn btn-evidence" for="file">
                                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path class="labelSVG" d="M11 15h2V9h3l-4-5-4 5h3z"/><path class="labelSVG" d="M20 18H4v-7H2v7c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2v-7h-2v7z"/></svg>
                                       {{nameLabel}}
                                       </label>
                                   </a>  
                               </p>  
-                          </div>  
+                          </div> 
+                          <div>
+                            <!-- <button mat-button matStepperNext>Siguiente</button>
+                            <button mat-button matStepperPrevious>Anterior</button> -->
+                          </div> 
                       </form>
                   </mat-step>
 
@@ -148,25 +155,23 @@
 
                   <mat-step>
                     <ng-template matStepLabel>ENVIAR</ng-template>
-                    Para enviar haga click en "Guardar"
+                    Para enviar el FORMULARIO haga click en "Guardar"
                     <div>
-                      <button mat-button matStepperPrevious>Anterior</button>
-                            
-                  <div class="options col-12 justify-content-center">
-                      <button
-                          mat-flat-button
-                          class="mt-4 m-1 mb-3 col-xs-3 br-40px"
-                          type="button"
-                          color="warn"
-                          >
-                          Guardar<mat-icon class="icon">save</mat-icon>&nbsp;
-                      </button>
-                  </div>
-
+                    <!-- <button mat-button matStepperPrevious>Anterior</button> -->
+                    <div class="options col-12 justify-content-center">
+                        <button
+                            mat-flat-button
+                            class="mt-4 m-1 mb-3 col-xs-3 br-40px"
+                            type="button"
+                            color="primary"
+                            >
+                            Guardar<mat-icon class="icon">save</mat-icon>&nbsp;
+                        </button>
+                    </div>
                       <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
                     </div>
                   </mat-step>
-                </mat-vertical-stepper>
+              </mat-vertical-stepper>
           </div>
       </div>     
   </form>

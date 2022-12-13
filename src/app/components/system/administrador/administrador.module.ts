@@ -9,6 +9,7 @@ import { AdministradorRoutingModule } from './administrador-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { VerDetalleComponent } from './reporte-evidencia/ver-detalle/ver-detalle.component';
 import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { DetalleEvidenciaComponent } from './reporte-actividades/detalle-evidencia/detalle-evidencia.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/materia
     ReportePersonalComponent,
     ReporteEvidenciaComponent,
     VerDetalleComponent,
+    DetalleEvidenciaComponent,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es' },

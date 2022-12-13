@@ -3,6 +3,8 @@ import { LenguajeDataTable } from 'src/app/utils/utils';
 import { Subject } from 'rxjs';
 import { ADTSettings } from 'angular-datatables/src/models/settings';
 import { HttpClient } from '@angular/common/http';
+import { DetalleEvidenciaComponent } from './detalle-evidencia/detalle-evidencia.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-reporte-actividades',
@@ -45,7 +47,8 @@ export class ReporteActividadesComponent implements OnDestroy , OnInit {
 
   
   constructor(
-    private httpClient: HttpClient  
+    public dialog: MatDialog,
+    // private httpClient: HttpClient  
     ) {}
  
   ngOnInit(): void {
@@ -68,16 +71,27 @@ export class ReporteActividadesComponent implements OnDestroy , OnInit {
         { className: "text-center align-middle border-bottom", "targets": [0, 1, 2] },
       ],
     };
-    this.httpClient.get<any[]>('data/data.json')
-    .subscribe(data => {
-      this.actos = (data as any).data;
-      // Calling the DT trigger to manually render the table
-      this.dtTrigger.subscribe();
-    });
+    // this.httpClient.get<any[]>('data/data.json')
+    // .subscribe(data => {
+    //   this.actos = (data as any).data;
+    //   // Calling the DT trigger to manually render the table
+    //   this.dtTrigger.subscribe();
+    // });
   }
 
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
+  }
+
+  abrirDetalle(){
+    const dialogRef = this.dialog.open(DetalleEvidenciaComponent, {
+      width: '100%',
+      // height:'100%',
+      autoFocus: false,
+      disableClose: true,
+      panelClass: 'myapp-no-padding-dialog',
+      // data: {acto: datos}
+    });
   }
 }

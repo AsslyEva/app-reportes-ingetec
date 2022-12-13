@@ -59,12 +59,12 @@ export class FormularioComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) {}
   SedeFormGroup: FormGroup = this._formBuilder.group({firstCtrl: ['']});
   LiderFormGroup: FormGroup = this._formBuilder.group({secondCtrl: ['']});
-  IntegrantesFormGroup: FormGroup = this._formBuilder.group({secondCtrl: ['']});
-  SegmentoFormGroup: FormGroup = this._formBuilder.group({secondCtrl: ['']});
-  ActividadFormGroup: FormGroup = this._formBuilder.group({secondCtrl: ['']});
-  CantidadFormGroup: FormGroup = this._formBuilder.group({secondCtrl: ['']});
-  FechaFormGroup: FormGroup = this._formBuilder.group({secondCtrl: ['']});
-  EvidenciaFormGroup: FormGroup = this._formBuilder.group({secondCtrl: ['']});
+  IntegrantesFormGroup: FormGroup = this._formBuilder.group({thirdCtrl: ['']});
+  SegmentoFormGroup: FormGroup = this._formBuilder.group({fourthCtrl: ['']});
+  ActividadFormGroup: FormGroup = this._formBuilder.group({fifthCtrl: ['']});
+  CantidadFormGroup: FormGroup = this._formBuilder.group({sixthCtrl: ['']});
+  FechaFormGroup: FormGroup = this._formBuilder.group({seventhCtrl: ['']});
+  EvidenciaFormGroup: FormGroup = this._formBuilder.group({eighthCtrl: ['']});
 
   
   
@@ -72,45 +72,6 @@ export class FormularioComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  /* MANEJO DEL ARRAY DE TASAS */
-
-  //Inicializa el array de tasas
-  tasas() : FormArray {
-    return this.productForm.get("tasas") as FormArray
-  }
-
-  //Guardar valores para las tasas
-  nuevaTasa(): FormGroup {
-    return this.fb.group({
-      detalle_tasa: this.descripcion.value,
-      monto_tasa: this.monto.value,
-    })
-  }
-
-  //Añadir los valores de las tasas al array de tasas
-  agregarTasas() {
-    if (this.descripcion.value && this.monto.value) {
-      this.tasas().push(this.nuevaTasa());
-      console.log(this.tasas().value)
-      //limpiar controls
-      this.descripcion.reset();
-      this.monto.reset();
-    } else {
-      Swal.fire(
-        'Es necesario ingresar la descripción y el monto de la tasa para agregarlo',
-        environment.systemName,
-        'warning'
-      );
-    }
-  }
-
-  //Quitar tasas del array
-  quitarTasas(i:number) {
-    this.tasas().removeAt(i);
-  }
-
-  onSubmit() {
-    console.log(this.productForm.value);
-  }
+  
 
 }

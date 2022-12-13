@@ -308,26 +308,34 @@ mat-sidenav-container {
 }
 
 
-// stiles range
-.mat-date-range-input-container {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-content: center;
-  width: 100%;
-}
-.mat-calendar-body-cell-content, .mat-date-range-input-separator {
-  color: rgba(0, 0, 0, 0);
-  border-color: transparent;
-  // display: none;
+// stiles DATE
+.mat-form-field-infix {
+  position: relative;
+  flex: auto;
+  min-width: 0;
+  width: 100% !important;
+  display: flex !important;
 }
 
-.mat-date-range-input-separator{
-  color: #ffff !important;
-  text-align: center;
-}
+// .mat-date-range-input-container {
+//   display: flex;
+//   align-items: center;
+//   flex-direction: row;
+//   flex-wrap: nowrap;
+//   justify-content: center;
+//   align-content: center;
+//   width: 100%;
+// }
+// .mat-calendar-body-cell-content, .mat-date-range-input-separator {
+//   color: rgba(0, 0, 0, 0);
+//   border-color: transparent;
+//   // display: none;
+// }
+
+// .mat-date-range-input-separator{
+//   color: #ffff !important;
+//   text-align: center;
+// }
 
 
 

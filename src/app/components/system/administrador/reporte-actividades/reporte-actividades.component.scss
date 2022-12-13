@@ -1,0 +1,25 @@
+@use 'src/assets/sass/general.scss' as g;
+
+.options{
+    display: flex;
+    gap: 1rem 1rem;
+}
+
+.menu-button{
+    // display: flex;
+    width: 80%;
+    mat-icon{
+        width: 100%;
+    }
+}
+
+.descargar-all{
+    background: g.$ingetec-aprobe;
+    width: 50%;
+    color: #ffff;
+    font-family: 'Montserrat';
+    // mat-icon{
+    //     // width: 100%;
+    //     // color: #ffff;
+    // }
+}

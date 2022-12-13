@@ -31,28 +31,29 @@
           <td>{{acto.rural}}</td>
           <td>{{acto.fecha | date:'dd/MM/yyyy hh:mm:ss a'}}</td>
           <td>
-            <div class="row options">
-              <!-- <div class="button-option view">
+            <div class="options">
+              <div class="button-option view">
                 <button
                   mat-flat-button
                   color="primary"
                   class="menu-button bg-blue"
-                  matTooltip="Ver acto">
+                  matTooltip="Ver evidencia"
+                  (click)="abrirDetalle()"
+                  >
                   <mat-icon> visibility </mat-icon>
                 </button>
                 <span class="text-button">Ver</span>
-              </div> -->
+              </div>
 
-            <div class="button-option download ">
+              <div class="button-option download ">
                 <button
                     mat-flat-button
-                    color="primary"
-                    class="menu-button"
+                    color="accent"
+                    class="menu-button gb-yellow"
                     matTooltip="Descargar">
                     <mat-icon> download </mat-icon>
-                    <span class="text-button">Descargar</span>
-
                   </button>
+                  <span class="text-button">Descargar</span>
               </div>
             </div>
           </td>
@@ -64,8 +65,7 @@
   <div class="button-option download text-center align-middle border-top pt-5">
     <button
         mat-flat-button
-        color="accent"
-        class="menu-button"
+        class="descargar-all"
         matTooltip="Descargar todo">
         <mat-icon> download </mat-icon>
         <span class="text-button">Descargar toda la Tabla</span>
