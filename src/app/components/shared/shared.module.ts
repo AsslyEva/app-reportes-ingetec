@@ -19,7 +19,8 @@ import { TituloDialogComponent } from './titulo-dialog/titulo-dialog.component';
     RouterModule,
     NgxSpinnerModule,
     AngularMaterialModule,
-    DataTablesModule
+    DataTablesModule,
+
 ],
   exports: [
     NgxSpinnerModule,

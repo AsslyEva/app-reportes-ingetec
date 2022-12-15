@@ -20,6 +20,8 @@ import { LeftSidebarComponent } from './layout/left-sidebar/left-sidebar.compone
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatSelectModule } from '@angular/material/select';
+
 
 
 @NgModule({
@@ -45,9 +47,11 @@ import { CommonModule } from '@angular/common';
     MatSidenavModule,
     MatDividerModule,
     MatButtonModule,
-    SharedModule
+    SharedModule,
+    MatSelectModule,
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

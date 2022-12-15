@@ -14,50 +14,94 @@
                       <ng-template matStepLabel>Sede</ng-template>
                       <mat-form-field  class="col-md-12" appearance="fill">
                           <mat-label>Seleccione Sede</mat-label>
-                          <mat-select>
-                            <mat-option value="primary">TARMA</mat-option>
-                            <mat-option value="primary">LA OROYA</mat-option>
-                            <mat-option value="primary">CARHUAMAYO</mat-option>
-
+                          <mat-select [formControl]="sede" >
+                            <mat-option *ngFor="let sede of sedesList" [value]="sede">
+                              {{sede}}</mat-option>
                           </mat-select>
                       </mat-form-field>
-                      <div>
-                        <!-- <button mat-button matStepperNext>Siguiente</button> -->
-                      </div>
+                      <p>
+                        Sede Seleccionada: {{sede.value}}
+                      </p>
                     </form>
                   </mat-step>
                   <mat-step >
-                    <form [formGroup]="LiderFormGroup">
-                      <ng-template matStepLabel>Lider de Equipo</ng-template>
-                      <mat-form-field  class="col-md-12" appearance="fill">
-                          <mat-label>Ingrese Nombre de Lider de Equipo</mat-label>
-                          <input matInput placeholder="Ingrese Nombre del lider de equipo">
-                          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                        </mat-form-field>
-                      <div>
-                        <!-- <button mat-button matStepperNext>Siguiente</button>
-                        <button mat-button matStepperPrevious>Anterior</button> -->
-                      </div>
+                    <form>
+                      <ng-template matStepLabel>Integrantes del Equipo</ng-template>
+
+                      <mat-form-field  class="col-md-12" appearance="fill" [formGroup]="LiderFormGroup">
+                        <mat-label>Lider de Equipo</mat-label>
+
+                        <mat-select [formControl]="lider">
+                          <mat-option *ngFor="let lider of integrantesList" [value]="lider">
+                            {{lider}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                      <mat-form-field class="col-md-12" appearance="fill" [formGroup]="IntegrantesFormGroup">
+                        <mat-label>Integrantes del equipo</mat-label>
+
+                        <mat-select [formControl]="integrantes" 
+                        [multiple]="true" 
+                        [(ngModel)]="selectedIntegrantes" 
+                        #integrantesSelect
+                        #multiSelect>
+
+                        <button 
+                        mat-raised-button 
+                        class="mat-primary fill text-sm" 
+                        (click)="selectAll(integrantesSelect, integrantesList, selectedIntegrantes)">
+                        Selecciona todo
+                        </button>
+                        <button 
+                        mat-raised-button 
+                        class="mat-accent fill text-sm" 
+                        (click)="deselectAll(integrantesSelect)">
+                        Elimina a todos
+                        </button>
+                          <mat-option  
+                                      [value]="integrantes" 
+                                      *ngFor="let integrantes of integrantesList" 
+                                      >
+                                      {{integrantes}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                        <p>
+                          Lider de Equipo: {{lider.value}}
+                        </p>
+
+                        <p >
+                          Integrantes de equipo
+                        </p>
+
+                        <ul  
+                        *ngFor="let integrantes of integrantesSelect?.value">
+                          {{integrantes}}
+                        </ul>
+
+
+    
                     </form>
                   </mat-step>
-                  <mat-step >
-                      <form [formGroup]="IntegrantesFormGroup">
-                        <ng-template matStepLabel>Integrantes de Equipo</ng-template>
-                        <mat-form-field  class="col-md-12" appearance="outline">
-                            <mat-label>Ingrese Integrantes de Equipo</mat-label>
-                            <textarea matInput placeholder="Ingrese a los integrantes y separe con ENTER"></textarea>
-                          </mat-form-field>
-                        <div>
-                          <!-- <button mat-button matStepperNext>Siguiente</button>
-                          <button mat-button matStepperPrevious>Anterior</button> -->
-                        </div>
-                      </form>
-                  </mat-step>
+
                   <mat-step>
-                      <form [formGroup]="SegmentoFormGroup">
-                        <ng-template matStepLabel>Segmento Realizado</ng-template>
-                        <mat-form-field  class="col-md-12" appearance="fill">
-                            <mat-label>Seleccione Segmento Realizado (Pueden ser mas de uno)</mat-label>
+                      <form>
+                        <ng-template matStepLabel>Actividades</ng-template>
+
+                        <mat-form-field class="col-md-12 date" appearance="fill" [formGroup]="FechaFormGroup">
+                          <mat-label>Ingrese Fecha de Actividad</mat-label>
+                          <input matInput [matDatepicker]="picker">
+                          <div>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                          </div>
+      
+                        </mat-form-field>
+
+                        <mat-form-field  class="col-md-12" appearance="fill" [formGroup]="SegmentoFormGroup">
+                            <mat-label>Segmento Realizado</mat-label>
                             <mat-select>
                               <mat-option value="primary">CONEXIONES NUEVAS BT</mat-option>
                               <mat-option value="primary">REINSTALACION DE SERVICIO RS</mat-option>
@@ -65,93 +109,77 @@
                               <mat-option value="primary"> ... </mat-option>
                             </mat-select>
                         </mat-form-field>
-                        <div>
-                          <!-- <button mat-button matStepperNext>Siguiente</button>
-                          <button mat-button matStepperPrevious>Anterior</button> -->
-                        </div>
-                      </form>
-                  </mat-step>
-                  <mat-step>
-                      <form [formGroup]="ActividadFormGroup">
-                        <ng-template matStepLabel>Actividades Realizadas</ng-template>
-                        <mat-form-field  class="col-md-12" appearance="fill">
-                            <mat-label>Seleccione Actividad Realizada (puede ser mas de uno)</mat-label>
-                            <mat-select>
-                              <mat-option value="primary">Aéreo Monofásico</mat-option>
-                              <mat-option value="primary">Aéreo Trifásico</mat-option>
-                              <mat-option value="primary">Subterráneo Monofásico sin rotura ni resane de vereda</mat-option>
-                              <mat-option value="primary"> ... </mat-option>
-                            </mat-select>
+
+                        <mat-form-field  class="col-md-12" appearance="fill" [formGroup]="ActividadFormGroup">
+                          <mat-label>Seleccione Actividad Realizada (puede ser mas de uno)</mat-label>
+                          <mat-select>
+                            <mat-option value="primary">Aéreo Monofásico</mat-option>
+                            <mat-option value="primary">Aéreo Trifásico</mat-option>
+                            <mat-option value="primary">Subterráneo Monofásico sin rotura ni resane de vereda</mat-option>
+                            <mat-option value="primary"> ... </mat-option>
+                          </mat-select>
                         </mat-form-field>
-                        <div>
-                          <!-- <button mat-button matStepperNext>Siguiente</button>
-                          <button mat-button matStepperPrevious>Anterior</button> -->
-                        </div>
+
+                          <!-- <mat-label class="col-md-12" style="text-align: center;" [formGroup]="CantidadFormGroup">Cantidades</mat-label>
+                          <ul class="col-md-12" style="text-align: center;">Solo puede ingresar cantidades en número</ul>
+
+
+                          <mat-form-field  class="col-md-6" appearance="fill" >
+                            <mat-label>Cantidad URBANO</mat-label>
+                            <input matInput type="number">
+                          </mat-form-field>
+                          <mat-form-field class="col-md-6"  appearance="fill">
+                            <mat-label>Cantidad RURAL</mat-label>
+                            <input matInput type="number">
+                          </mat-form-field> -->
+
+
+                          <div class="col-md-12" style="text-align: center;" [formGroup]="CantidadFormGroup" >
+                            <mat-label>Cantidades</mat-label> (Click en (+) para agregar nueva tasa)
+                            <table class="form-cantidad table"  formArrayName="cantidades">
+                              <tr>
+                                <td>
+                                  Urbano
+                                  <input type="number" [formControl]="rural" class="form-control col-md-6" required>
+                                </td>
+                                <td>
+                                  Rural
+                                  <input type="number" [formControl]="urbano" class="form-control col-md-6" required>
+                                </td>
+                                <td class="td-cantidad">
+                                  <button type="button"
+                                          (click)="agregarCantidades()"
+                                          class="cantidad-button add"
+                                          matTooltip="Agregar nueva cantidad">
+                                    <mat-icon>add</mat-icon>
+                                  </button>
+                                </td>
+                              </tr>
+                              <tr *ngFor="let cantidad of cantidades().controls; let i=index" [formGroupName]="i">
+                                <td class="td-label">
+                                  <label>Cantidad de Rural agregada</label>  <mat-icon>check_circle_outline</mat-icon>
+                                    <input type="number" formControlName="cantidad_rural" class="form-control">
+                                    {{ value }}
+
+                                </td>
+                                <td class="td-label">
+                                  <label>Cantidad en Urbano agregado</label> <mat-icon>check_circle_outline</mat-icon>
+                                    <input type="number" formControlName="cantidad_urbano" class="form-control">
+                                </td>
+                                <td class="td-cantidad">
+                                    <button (click)="quitarCantidades(i)"
+                                            class="cantidad-button delete"
+                                            matTooltip="Eliminar cantidad"
+                                            type="button">
+                                      <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                              </tr>
+                            </table>
+                          </div>
+
                       </form>
                   </mat-step>
-
-                  <mat-step>
-                      <form [formGroup]="CantidadFormGroup" class="col-md-12" >
-                        <ng-template matStepLabel>Cantidades Ejecutadas</ng-template>
-                        <mat-label class="col-md-12">Solo puede ingresar cantidades en número</mat-label>
-                        <mat-form-field  class="col-md-6" appearance="fill">
-                          <mat-label>URBANO</mat-label>
-                          <input matInput type="number">
-                        </mat-form-field>
-                        <mat-form-field class="col-md-6"  appearance="fill">
-                          <mat-label>RURAL</mat-label>
-                          <input matInput type="number">
-                        </mat-form-field>
-                        <div>
-                          <!-- <button mat-button matStepperNext>Siguiente</button>
-                          <button mat-button matStepperPrevious>Anterior</button> -->
-                        </div>
-                      </form>
-                  </mat-step>
-
-                  <mat-step>
-                    <form [formGroup]="FechaFormGroup">
-                      <ng-template matStepLabel>Fecha de Acividad</ng-template>
-                      <mat-form-field class="col-md-12 date" appearance="fill">
-                        <mat-label>Ingrese Fecha de Actividad</mat-label>
-                        <input matInput [matDatepicker]="picker">
-                        <div>
-                          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                          <mat-datepicker #picker></mat-datepicker>
-                        </div>
-                        <mat-hint>MM/DD/YYYY</mat-hint>
-    
-                      </mat-form-field>
-                      <div>
-                        <!-- <button mat-button matStepperNext>Siguiente</button>
-                        <button mat-button matStepperPrevious>Anterior</button> -->
-                      </div>
-                    </form>
-                  </mat-step>
-
-                  <mat-step>
-                      <form [formGroup]="EvidenciaFormGroup">
-                        <ng-template matStepLabel>Subir Evidencia </ng-template>
-                          <div class="col-md-12">  
-                              <mat-label>Subir evidencia</mat-label>
-                              <p class="confirm-button">  
-                                  <a>  
-                                      <input #inputfile type="file" name="file" id="file" class="inputfile" (change)="clearNameInput()" accept=".jpg , .png , .jpeg">
-                                      <label class="btn btn-evidence" for="file">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path class="labelSVG" d="M11 15h2V9h3l-4-5-4 5h3z"/><path class="labelSVG" d="M20 18H4v-7H2v7c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2v-7h-2v7z"/></svg>
-                                      {{nameLabel}}
-                                      </label>
-                                  </a>  
-                              </p>  
-                          </div> 
-                          <div>
-                            <!-- <button mat-button matStepperNext>Siguiente</button>
-                            <button mat-button matStepperPrevious>Anterior</button> -->
-                          </div> 
-                      </form>
-                  </mat-step>
-
-
 
                   <mat-step>
                     <ng-template matStepLabel>ENVIAR</ng-template>
