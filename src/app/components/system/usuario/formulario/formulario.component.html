@@ -1,7 +1,6 @@
 <div class="content">
   <app-title-frame
   [title]="'INGRESE DATOS EN EL FORMULARIO'"
-  [numero]="1"
   ></app-title-frame> 
     
 <form class="content-info col-12 d-flex justify-content-center">
@@ -121,31 +120,9 @@
 
                   <mat-form-field   appearance="outline">
                     <mat-label>Seleccione Actividad Realizada</mat-label>
-                    <mat-select [formControl]="actividad_especifica" 
-                                [multiple]="true" 
-                                [(ngModel)]="selectedActividad_especifica" 
-                                #actividad_especificaSelect
-                                #multiSelect>
-                      <div class="options">
-                        <button 
-                        mat-raised-button 
-                        class="mat-primary fill text-sm" 
-                        (click)="selectAll(actividad_especificaSelect, actividad_especificaList, selectedActividad_especifica)">
-                        Selecciona todo
-                        </button>
-                        <button 
-                        mat-raised-button 
-                        class="mat-warn fill text-sm" 
-                        (click)="deselectAll(actividad_especificaSelect)">
-                        Elimina a todos
-                        </button>
-                      </div>
-
-                      <mat-option  
-                                  [value]="actividad_especifica" 
-                                  *ngFor="let actividad_especifica of actividad_especificaList" 
-                                  >
-                                  {{actividad_especifica}}
+                    <mat-select [formControl]="actividad_especifica">
+                      <mat-option *ngFor="let actividad_especifica of actividad_especificaList" [value]="actividad_especifica">
+                        {{actividad_especifica}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -154,11 +131,11 @@
                   <label>Cantidades realizadas</label>
                     <div class="cantidad">
                       <div class="item-cantidad">
-                        Urbano
+                        <ul>Urbano</ul> 
                         <input type="number" [formControl]="rural" class="form-control col-md-6" required>
                       </div>
                       <div class="item-cantidad">
-                        Rural
+                        <ul>Rural</ul> 
                         <input type="number" [formControl]="urbano" class="form-control col-md-6 " required>
                       </div>
                     </div >
@@ -267,15 +244,17 @@
               <label>Segmento</label>
               <ul>
                 <mat-chip-list>
-                  
+                  <mat-chip>
+                    {{segmento.value}}
+                  </mat-chip>
                 </mat-chip-list>
               </ul>            
-            </div>
-           -->
+            </div> -->
+          
 
 
 
-          Si esta seguro de los datos ingresados haga click en "Enviar"
+          <ul>Si esta seguro de los datos ingresados haga click en "Enviar"</ul> 
           <div>
           <!-- <button mat-button matStepperPrevious>Anterior</button> -->
           <div class="options col-12 justify-content-center">

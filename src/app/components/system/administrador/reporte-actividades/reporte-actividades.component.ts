@@ -5,37 +5,75 @@ import { ADTSettings } from 'angular-datatables/src/models/settings';
 import { HttpClient } from '@angular/common/http';
 import { DetalleEvidenciaComponent } from './detalle-evidencia/detalle-evidencia.component';
 import { MatDialog } from '@angular/material/dialog';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
+
+
+export interface Actividad {
+  id_actividad: number;
+  fecha?: Date;
+  lider?: string;
+  integrantes?: string;
+  segmento?: string;
+  actividad_especifica?: string;
+  cantidad?: number;
+  cantidad_rural: string | undefined;
+  cantidad_urbano: string | undefined;
+  fecha_acti?: Date;
+}
+
 
 @Component({
   selector: 'app-reporte-actividades',
   templateUrl: './reporte-actividades.component.html',
   styleUrls: ['./reporte-actividades.component.scss']
 })
+
 export class ReporteActividadesComponent implements OnDestroy , OnInit {
+
+  required: boolean = true;
+
+
+  // inicializa fecha
+  todayDate : Date = new Date();
+  fecha_act =  new FormControl('');
 
   //Configuracion para datatable
   dtOptions: ADTSettings = {};
+
+  // inicializacion de variables  
+  // actos: Actividad[] = [];
+  form: FormGroup;
+
   sede = "";
-  segmento = "";
-  actividad ="";
   lider = "";
-  integrantes = "";
+  integrantes = [] = [];
+  segmento = "";
+  actividad_especifica ="";
+  rural = "";
+  urbano = "";
   fecha ='';
   
   actos: any[] = [
     {
+      id_actividad: 1,
       sede: "TARMA",
+      lider : "Javier Coella",
+      integrantes : ["Bryan" , "Assly" , "Franco"],
       segmento : "CONEXIONES NUEVAS BT",
-      actividad : "Subterráneo Monofásico sin rotura ni resane de vereda",
+      actividad_especifica : "Subterráneo Monofásico sin rotura ni resane de vereda",
       urbano : 2,
       rural : 5,
       fecha : new Date(),
     },
 
     {
+      id_actividad: 4,
       sede: "TARMA",
+      lider : "Efrain Aylas",
+      integrantes : ["Bryan" , "Diana" , "Franco"],
       segmento : "REINSTALACION DE SERVICIO RS",
-      actividad : "Instalación de medidor monofásico, caja e ITM",
+      actividad_especifica : "Instalación de medidor monofásico, caja e ITM",
       urbano : 0,
       rural : 3,
       fecha : new Date(),
@@ -48,8 +86,15 @@ export class ReporteActividadesComponent implements OnDestroy , OnInit {
   
   constructor(
     public dialog: MatDialog,
+    private fb:FormBuilder,
+
     // private httpClient: HttpClient  
-    ) {}
+    ) {
+
+      this.form = this.fb.group({
+        actividad: ['',[Validators.required]]
+      });
+    }
  
   ngOnInit(): void {
     const that = this;

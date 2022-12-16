@@ -1,10 +1,66 @@
-<div class="content">
+<div class="content-body">
 
   <app-title-frame
   [title]="'REPORTE DE ACTIVIDADES COMERCIALES'"
-  [numero]="1"
   [link]="'/administrador/inicio'"
   ></app-title-frame>
+
+
+  <form class="row form-filtro" [formGroup]="form">
+    <div class="col-12">
+      <p class="text-filtro">Seleccione un tipo de registro para realizar la búsqueda</p>
+    </div>
+    <div class="col-12">
+      <div class="row d-flex align-itmes-center">
+        <div class="col-12 col-md-4">
+          <mat-form-field class="form-item" appearance="fill">
+            <mat-label>Fecha de Actividad</mat-label>
+            <input matInput style="text-align: center;"
+                                    placeholder="Ingrese fecha"  
+                                    [matDatepicker]="picker" 
+                                    [formControl]="fecha_act" 
+                                    [ngModel]="todayDate">
+                    
+                    <div>
+                      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </div>
+          </mat-form-field>
+        </div>
+
+        <div class="col-12 col-md-12 d-flex">
+
+          <mat-form-field class="form-item col-md-6" appearance="fill">
+            <mat-label>Segmento</mat-label>
+            <mat-select 
+                        placeholder="Ingresa registra"
+                        formControlName="actividad">
+              <mat-option *ngFor="let actividad of actos" [value]="actividad.id_actividad" >
+                {{actividad.segmento}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="form-item col-md-6" appearance="fill">
+            <mat-label>Lider de Equipo</mat-label>
+            <mat-select 
+                        placeholder="Ingresa registra"
+                        formControlName="actividad">
+              <mat-option *ngFor="let actividad of actos" [value]="actividad.id_actividad" >
+                {{actividad.lider}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <button
+          mat-flat-button
+          color="primary"
+          class="bg-blue ml-5 mb-4">
+          Buscar&nbsp;<mat-icon>search</mat-icon>
+        </button>
+      </div>
+    </div>
+  </form>
 
   <div class="content-tabla col-12">
     <table 
@@ -14,6 +70,8 @@
       <thead>
         <tr >
           <th>Sede</th>
+          <th>Lider de Equipo</th>
+          <th>Cuadrilla</th>
           <th>Segmento</th>
           <th>Actividades Realizadas</th>
           <th>Cantidades Ejecutadas Urbanas</th>
@@ -25,14 +83,22 @@
       <tbody *ngIf="actos?.length !=0">
         <tr *ngFor="let acto of actos" class="text-center align-middle border-bottom ">
           <td>{{acto.sede}}</td>
+          <td>{{acto.lider}}</td>
+          <td>
+            <mat-chip-list>
+              <mat-chip>
+                {{acto.integrantes}}
+              </mat-chip>
+            </mat-chip-list>
+          </td>
           <td>{{acto.segmento}}</td>
-          <td>{{acto.actividad}}</td>
+          <td>{{acto.actividad_especifica}}</td>
           <td>{{acto.urbano}}</td>
           <td>{{acto.rural}}</td>
-          <td>{{acto.fecha | date:'dd/MM/yyyy hh:mm:ss a'}}</td>
+          <td>{{acto.fecha | date:'dd/MM/yyyy'}}</td>
           <td>
             <div class="options">
-              <div class="button-option view">
+              <!-- <div class="button-option view">
                 <button
                   mat-flat-button
                   color="primary"
@@ -43,12 +109,12 @@
                   <mat-icon> visibility </mat-icon>
                 </button>
                 <span class="text-button">Ver</span>
-              </div>
+              </div> -->
 
               <div class="button-option download ">
                 <button
                     mat-flat-button
-                    color="accent"
+                    color="primary"
                     class="menu-button gb-yellow"
                     matTooltip="Descargar">
                     <mat-icon> download </mat-icon>

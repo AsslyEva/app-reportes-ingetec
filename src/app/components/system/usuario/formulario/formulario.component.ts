@@ -54,7 +54,6 @@ export class FormularioComponent implements OnInit {
 
   // configuracion actividades
   productForm: FormGroup;
-  fecha_act =  new FormControl('');
   rural =  new FormControl('');
   urbano =  new FormControl('');
   
@@ -78,6 +77,7 @@ export class FormularioComponent implements OnInit {
 
   // inicializa fecha
   todayDate : Date = new Date();
+  fecha_act =  new FormControl('');
 
 
 // inicializacion integrantes
