@@ -1,17 +1,17 @@
 @use 'src/assets/sass/general.scss' as g;
 
-.options{
-    display: flex;
-    gap: 1rem 1rem;
-}
+// .options{
+//     display: flex;
+//     gap: 1rem 1rem;
+// }
 
-.menu-button{
-    // display: flex;
-    width: 80%;
-    mat-icon{
-        width: 100%;
-    }
-}
+// .menu-button{
+//     // display: flex;
+//     width: 80%;
+//     mat-icon{
+//         width: 100%;
+//     }
+// }
 
 .descargar-all{
     background: g.$ingetec-aprobe;
@@ -32,40 +32,71 @@
 }
 
 .form-filtro{
-    border-radius: 4px;
-    border: 1px solid #00000026;
-    box-shadow: 0 1px 3px #00000040;
-    // height: calc(70vh - 200px);
-    display: flex;
-    position: relative;
-    justify-content: flex-start;
-    align-items: stretch;
-    flex-wrap: wrap;
-    padding: 1rem;
-    bottom: 1rem;
-    width: 100%;
-    // gap: 0 5rem;
-    mat-label{
-        font-size: 1.2rem;
-        font-family: 'Gotham-Medium';
-        color: rgb(66, 66, 66);
+    border-radius: 2rem;
+    border-style: dotted;
+    border-width: 2px;
+    border-color: g.$ingetec-aprobe;
+    width: 90%;
+    padding: 2rem;
+    margin: 0 0 2rem 0;
+}
+
+
+
+    
+    .rango{
+      display: flex;
+
+    //   border: solid 1.5px g.$ingetec-green;
+      padding: 2rem 0 0 0;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1rem 1rem;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
 
     }
-    input{
-        color: rgb(111, 109, 109);
+
+    .items-busqueda{
+        display: flex;
+        flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    }
+    mat-form-field{
+        color: g.$ingetec-green;
+        font-size: 2rem;
+        // background: #ffff;
+
+    } 
+
+    mat-label{
+        color: rgb(0, 0, 0);
         font-size: 1.3rem;
-        font-family: 'AvenirLTStd-Book';
-        padding: 0.6rem 0;
-        border-radius: 4rem;
-        font-weight: bold;
+    } 
+
+    mat-datepicker-toggle{
+        color: rgb(0, 0, 0);
     }
-    .text-filtro{
-      font-size: 1.5rem;
-      color: g.$ingetec-gray-dark;
-      font-family: g.$ff-avenirLTStd-book;
-      padding: 8px 0 4px 0;
-    }
-    span{
+    mat-datepicker{
         font-size: 2rem;
     }
-}
+    button{
+        width: 100%;
+        background-color: g.$ingetec-aprobe;
+        padding: 0.4rem;
+        border-radius: 3rem;
+        margin: 1rem 0;
+        border: none;
+        color: white;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+    }

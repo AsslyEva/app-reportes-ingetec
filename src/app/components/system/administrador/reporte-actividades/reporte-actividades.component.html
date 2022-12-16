@@ -10,27 +10,10 @@
     <div class="col-12">
       <p class="text-filtro">Seleccione un tipo de registro para realizar la búsqueda</p>
     </div>
-    <div class="col-12">
-      <div class="row d-flex align-itmes-center">
-        <div class="col-12 col-md-4">
-          <mat-form-field class="form-item" appearance="fill">
-            <mat-label>Fecha de Actividad</mat-label>
-            <input matInput style="text-align: center;"
-                                    placeholder="Ingrese fecha"  
-                                    [matDatepicker]="picker" 
-                                    [formControl]="fecha_act" 
-                                    [ngModel]="todayDate">
-                    
-                    <div>
-                      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                      <mat-datepicker #picker></mat-datepicker>
-                    </div>
-          </mat-form-field>
-        </div>
+      <div class="filtro">
+        <div class="items-busqueda">
 
-        <div class="col-12 col-md-12 d-flex">
-
-          <mat-form-field class="form-item col-md-6" appearance="fill">
+          <mat-form-field class="form-item col-md-6" appearance="outline">
             <mat-label>Segmento</mat-label>
             <mat-select 
                         placeholder="Ingresa registra"
@@ -41,7 +24,7 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field class="form-item col-md-6" appearance="fill">
+          <mat-form-field class="form-item col-md-6" appearance="outline">
             <mat-label>Lider de Equipo</mat-label>
             <mat-select 
                         placeholder="Ingresa registra"
@@ -52,14 +35,33 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <button
-          mat-flat-button
-          color="primary"
-          class="bg-blue ml-5 mb-4">
-          Buscar&nbsp;<mat-icon>search</mat-icon>
+        
+        <div class="rango">
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha inicial</mat-label>
+            <input matInput
+                    [matDatepicker]="fecInicio"
+                    >
+            <mat-datepicker-toggle matIconSuffix [for]="fecInicio"></mat-datepicker-toggle>
+            <mat-datepicker #fecInicio></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" >
+            <mat-label>Fecha final</mat-label>
+            <input matInput
+                    [matDatepicker]="fecfin"
+                    >
+            <mat-datepicker-toggle matIconSuffix [for]="fecfin"></mat-datepicker-toggle>
+            <mat-datepicker #fecfin></mat-datepicker>
+
+          </mat-form-field>
+        </div>
+
+        <button matt-button >Buscar
+          <mat-icon>search</mat-icon>
         </button>
+
       </div>
-    </div>
   </form>
 
   <div class="content-tabla col-12">
