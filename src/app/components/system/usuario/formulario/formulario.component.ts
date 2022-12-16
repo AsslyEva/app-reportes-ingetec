@@ -6,17 +6,22 @@ import { MatSelect } from '@angular/material/select';
 import { map, Observable, startWith } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import Swal from 'sweetalert2';
-
+import {Sort} from '@angular/material/sort';
 
 export interface User {
   name: string;
 }
 
-export class Cantidad {
-  public cantidad?: number;
-  public cantidad_rural: string | undefined;
-	public cantidad_urbano: string | undefined;
-	public fecha_acti?: Date;
+export interface Actividad {
+   fecha?: Date;
+   lider?: string;
+   integrantes?: string;
+   segmento?: string;
+   actividad_especifica?: string;
+   cantidad?: number;
+   cantidad_rural: string | undefined;
+	 cantidad_urbano: string | undefined;
+	 fecha_acti?: Date;
 }
 
 export interface integrantes {
@@ -38,117 +43,65 @@ export const INTEGRANTES: integrantes[] = [
   styleUrls: ['./formulario.component.scss']
 })
 export class FormularioComponent implements OnInit {
+  required: boolean = true;
+  // matDatepickerFilter: boolean = true;
+
+
   // inicializacion sedes
   sede = new FormControl('');
   sedesList: string[] = ['TARMA', 'LA OROYA', 'CARHUAMAYO', 'JUNIN'];
-  multipleS: boolean = true;
-  required: boolean = true;
 
-  // configuracion cantidad
+
+  // configuracion actividades
   productForm: FormGroup;
+  fecha_act =  new FormControl('');
   rural =  new FormControl('');
   urbano =  new FormControl('');
+  
+  // *// inicializacion segmento
+  segmento = new FormControl('');
+  segmentosList: string[] = ['INSTALACION', 'CORTE', 'REPARTO'];
+ 
+  // *// inicializacion actividades
+  actividad_especifica = new FormControl('');
+  actividad_especificaList: string[] = ['Aéreo Monofásico', 'Aéreo Trifásico', 'Subterráneo Monofásico sin rotura ni resane de vereda'];
+ // array is selectedIntegrantes
+ selectedActividad_especifica!: any[];
+ 
 
   // configuracion autocomplete
   myControl = new FormControl<string | User>('');
   filteredOptions: Observable<User[]> | undefined;
 
-  // inicializacion equipo
-  integrantes = new FormControl('');
+  // inicializacion lider
   lider = new FormControl('');
 
+  // inicializa fecha
+  todayDate : Date = new Date();
 
-  value: Array<number> = [];
 
-  // selectAll = false;
-
-  printValue() {
-    console.log(this.value);
-  }
-  
-  // integrantes = [
-  //   { id: 2, name: "ASSLY" },
-  //   { id: 3, name: "BRYAN" },
-  //   { id: 4, name: "JANESSY" },
-  //   { id: 5, name: "FRANCO" }
-  // ];
-
-  // valueChange(id: number) {
-  //   console.log(this.value.indexOf(id));
-  //   if (this.value.indexOf(id) > -1) {
-  //     const pos = this.value.indexOf(id);
-  //     this.value.splice(pos, 1);
-  //   } else {
-  //     this.value.push(id);
-  //   }
-  //   console.log(this.value);
-  // }
-
-  // toggleAllSelection() {
-  //   this.selectAll = !this.selectAll;
-  //   if (this.selectAll == true) {
-  //     this.value = [ 0, 2, 3, 4, 5];
-  //   } else {
-  //     this.value = [];
-  //   }
-  // }
-
-  integrantesList: string[] = ['ANA', 'ERIKA', 'VICTOR', 'BRYAN', 'FRANCO', 'JANESSY'];
-  searchUserForm!: FormGroup;
-
- // array is selectedYears
+// inicializacion integrantes
+integrantes = new FormControl('');
+integrantesList: string[] = ['ANA', 'ERIKA', 'VICTOR', 'BRYAN', 'FRANCO', 'JANESSY'];
+searchUserForm!: FormGroup;
+ // array is selectedIntegrantes
  selectedIntegrantes!: any[];
- intetrantesSelect!: any[];
+ SelectActividad_especifica!: any[];
  
  selectAll(select: MatSelect, values: any, array: any) {
   select.value = values;
   array = values;
-  console.log(this.selectedIntegrantes); // selectedYears is still undefined
+  console.log(this.selectedIntegrantes); 
+  console.log(this.selectedActividad_especifica); // selectedIntegrantes is still undefined
+  // selectedIntegrantes is still undefined
 }
 
 deselectAll(select: MatSelect) {
   this.selectedIntegrantes = [];
+  this.selectedActividad_especifica = [];
   select.value = [];
 }
 
-integrantesSelect = [
-  {id: 0, viewValue: "2017"},
-  {id: 2, viewValue: "ASSLY"},
-  {id: 3, viewValue: "FRANCO"},
-  {id: 4, viewValue: "BRYAN"},
-  {id: 5, viewValue: "JANESSY"}
-]
-
-
-
-
-  // configuracion subir evidencia
-  @ViewChild('inputfile')
-  inputfile!: ElementRef;
-  @Output() messagestate = new EventEmitter<boolean>();
-  message: any;
-  nameLabel: string = 'Seleccione archivo';
-
-  clearNameInput(){
-    (this.inputfile.nativeElement.files[0])
-      ? this.nameLabel = this.inputfile.nativeElement.files[0].name
-      : this.nameLabel = 'Seleccione evidencia';
-    }
-
-  closeState(){
-  this.messagestate.emit(true)
-  }
-
-  tinyAlert() {
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Archivo subido exitosamente',
-        showConfirmButton: false,
-        timer: 1500
-    })
-    
-  }
 
   // color configuracion selec
   colorControl = new FormControl('primary' as ThemePalette);
@@ -158,8 +111,13 @@ integrantesSelect = [
     private _formBuilder: FormBuilder) {
       
     this.productForm = this.fb.group({
-      cantidades: this.fb.array([]) ,
+      actividades: this.fb.array([]) ,
     });
+
+    this.ActividadFormGroup = this.fb.group({
+      actividades: this.fb.array([]) ,
+    });
+
 
   }
 
@@ -182,29 +140,35 @@ integrantesSelect = [
   /* MANEJO DEL ARRAY DE CANTIDADES */
 
   //Inicializa el array de cantidades
-  cantidades() : FormArray {
-    return this.productForm.get("cantidades") as FormArray
+  actividades() : FormArray {
+    return this.productForm.get("actividades") as FormArray
   }
 
   //Guardar valores para las cantidades
-  nuevaCantidad(): FormGroup {
+  nuevaActividad(): FormGroup {
     return this.fb.group({
+      fecha_actividad: this.fecha_act.value,
+      detalle_segmento: this.segmento.value,
+      detalle_actividad: this.actividad_especifica.value,
       cantidad_rural: this.rural.value,
       cantidad_urbano: this.urbano.value,
     })
   }
 
   //Añadir los valores de las cantidades al array de cantidades
-  agregarCantidades() {
-    if (this.rural.value && this.urbano.value) {
-      this.cantidades().push(this.nuevaCantidad());
-      console.log(this.cantidades().value)
+  agregarActividades() {
+    if (this.fecha_act.value && this.segmento.value && this.actividad_especifica.value && this.rural.value && this.urbano.value) {
+      this.actividades().push(this.nuevaActividad());
+      console.log(this.actividades().value)
       //limpiar controls
+      this.fecha_act.reset();
+      this.segmento.reset();
+      this.actividad_especifica.reset();
       this.rural.reset();
       this.urbano.reset();
     } else {
       Swal.fire(
-        'Es necesario ingresar cantidad de urbano y rural, en caso no exista coloque "0", para agregarlo',
+        'Es necesario ingresar tdodos los datos, en caso no exista coloque "0", para agregarlo',
         environment.systemName,
         'warning'
       );
@@ -212,20 +176,21 @@ integrantesSelect = [
   }
 
   //Quitar cantidad del array
-  quitarCantidades(i:number) {
-    this.cantidades().removeAt(i);
+  quitarActividades(i:number) {
+    this.actividades().removeAt(i);
   }
-
-
-    //registra las cantidades
-    registrarCantidades(lista: Cantidad[]){
-      
-    }
 
 
 
 
   onSubmit() {
     console.log(this.productForm.value);
+  }
+
+  disableThirdHeader = false;
+  actividad = [];
+
+  sortedData = this.actividad.slice();
+  sortData() {
   }
 }

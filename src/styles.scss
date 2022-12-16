@@ -237,13 +237,13 @@ table.dataTable thead th {
   border-radius: 2rem;
 }
 
-.myapp-no-padding-dialog .mat-form-field-infix {
-  display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  width: 32rem;
-}
+// .myapp-no-padding-dialog .mat-form-field-infix {
+//   display: flex;
+//   position: relative;
+//   justify-content: center;
+//   align-items: center;
+//   width: 32rem;
+// }
 
 
 // styles chips
@@ -258,15 +258,18 @@ input{
   font-size: 1.2rem;
   font-family: 'AvenirLTStd-Book';
   padding: 0.6rem 0;
-
 }
 
 .form-control {
   font-size: 1.5rem !important;
 }
 
-.myapp-no-padding-dialog .mat-form-field-infix{
-  justify-content: flex-start;
+// .myapp-no-padding-dialog .mat-form-field-infix{
+//   justify-content: flex-start;
+// }
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: rgba(255, 255, 255, 0) !important;
 }
 
 
@@ -308,14 +311,25 @@ mat-sidenav-container {
 }
 
 
-// stiles DATE
+// mat-form styles
 .mat-form-field-infix {
-  position: relative;
-  flex: auto;
-  min-width: 0;
-  width: 100% !important;
   display: flex !important;
 }
+
+.mat-vertical-content  {
+  padding: 0 0 0 10px !important;
+}
+.mat-form-field {
+  display: block !important;
+}
+
+
+
+// styles vertical mat-step  
+.row>* {
+  padding-left: 0 !important;
+}
+
 
 // .mat-date-range-input-container {
 //   display: flex;

@@ -4,232 +4,297 @@
   [numero]="1"
   ></app-title-frame> 
     
-  <form class="content-info col-12 d-flex justify-content-center">
+<form class="content-info col-12 d-flex justify-content-center">
       <!-- <p>INGRESA LOS DATOS REQUERIDOS</p> -->
-      <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="row form-inf">
-              <mat-vertical-stepper [linear]="false" #stepper  class="col-md-12">
-                  <mat-step>
-                    <form [formGroup]="SedeFormGroup">
-                      <ng-template matStepLabel>Sede</ng-template>
-                      <mat-form-field  class="col-md-12" appearance="fill">
-                          <mat-label>Seleccione Sede</mat-label>
-                          <mat-select [formControl]="sede" >
-                            <mat-option *ngFor="let sede of sedesList" [value]="sede">
-                              {{sede}}</mat-option>
-                          </mat-select>
-                      </mat-form-field>
-                      <p>
-                        Sede Seleccionada: {{sede.value}}
-                      </p>
-                    </form>
-                  </mat-step>
-                  <mat-step >
-                    <form>
-                      <ng-template matStepLabel>Integrantes del Equipo</ng-template>
+  <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="row form-inf">
+      <mat-vertical-stepper [linear]="false" #stepper  class="col-md-12">
+        <mat-step>
+          <form [formGroup]="SedeFormGroup">
+            <ng-template matStepLabel>Sede</ng-template>
+            <mat-form-field  class="col-md-12" appearance="outline">
+                <mat-label>Seleccione Sede</mat-label>
+                <mat-select [formControl]="sede" >
+                  <mat-option *ngFor="let sede of sedesList" [value]="sede">
+                    {{sede}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <p>
+              Sede Seleccionada: {{sede.value}}
+            </p>
+          </form>
+        </mat-step>
 
-                      <mat-form-field  class="col-md-12" appearance="fill" [formGroup]="LiderFormGroup">
-                        <mat-label>Lider de Equipo</mat-label>
+        <mat-step >
+          <form>
+            <ng-template matStepLabel>Integrantes del Equipo</ng-template>
 
-                        <mat-select [formControl]="lider">
-                          <mat-option *ngFor="let lider of integrantesList" [value]="lider">
-                            {{lider}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
+            <mat-form-field   appearance="outline" [formGroup]="LiderFormGroup">
+              <mat-label>Lider de Equipo</mat-label>
 
-                      <mat-form-field class="col-md-12" appearance="fill" [formGroup]="IntegrantesFormGroup">
-                        <mat-label>Integrantes del equipo</mat-label>
+              <mat-select [formControl]="lider">
+                <mat-option *ngFor="let lider of integrantesList" [value]="lider">
+                  {{lider}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
 
-                        <mat-select [formControl]="integrantes" 
-                        [multiple]="true" 
-                        [(ngModel)]="selectedIntegrantes" 
-                        #integrantesSelect
-                        #multiSelect>
+            <mat-form-field appearance="outline" [formGroup]="IntegrantesFormGroup">
+              <mat-label>Integrantes del equipo</mat-label>
 
+              <mat-select [formControl]="integrantes" 
+                          [multiple]="true" 
+                          [(ngModel)]="selectedIntegrantes" 
+                          #integrantesSelect
+                          #multiSelect>
+              <div class="options">
+                <button 
+                mat-raised-button 
+                class="mat-primary fill text-sm" 
+                (click)="selectAll(integrantesSelect, integrantesList, selectedIntegrantes)">
+                Selecciona todo
+                </button>
+                <button 
+                mat-raised-button 
+                class="mat-warn fill text-sm" 
+                (click)="deselectAll(integrantesSelect)">
+                Elimina a todos
+                </button>
+              </div>
+
+                <mat-option  
+                            [value]="integrantes" 
+                            *ngFor="let integrantes of integrantesList" 
+                            >
+                            {{integrantes}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+              <p>
+                Lider de Equipo: {{lider.value}}
+              </p>
+              <p >
+                Integrantes de equipo
+              </p>
+              <ul>
+              <mat-chip-list>
+                <mat-chip  *ngFor="let integrantes of integrantesSelect?.value">
+                  {{integrantes}}
+                </mat-chip>
+              </mat-chip-list>
+              </ul>
+          </form>
+        </mat-step>
+
+        <mat-step>
+            <form  [formGroup]="productForm" style="text-align: center;">
+              <label>Actividades realizadas</label>
+              <ul>(Click en (+) para agregar nueva actividad)</ul>
+              <ng-template matStepLabel>Actividades</ng-template>
+
+              <table class="form-cantidad table"  formArrayName="actividades"  >
+                <div style="text-align: center;" >
+
+                  <mat-form-field class=" date"  appearance="outline" >
+                    <mat-label>Ingrese Fecha de Actividad</mat-label>
+                    <input matInput style="text-align: center;"
+                                    placeholder="Ingrese fecha"  
+                                    [matDatepicker]="picker" 
+                                    [formControl]="fecha_act" 
+                                    [ngModel]="todayDate">
+                    
+                    <div>
+                      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </div>
+
+                  </mat-form-field>
+
+                  <mat-form-field   appearance="outline">
+                      <mat-label>Segmento Realizado</mat-label>
+                      <mat-select [formControl]="segmento">
+                        <mat-option *ngFor="let segmento of segmentosList" [value]="segmento">
+                          {{segmento}}
+                        </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field   appearance="outline">
+                    <mat-label>Seleccione Actividad Realizada</mat-label>
+                    <mat-select [formControl]="actividad_especifica" 
+                                [multiple]="true" 
+                                [(ngModel)]="selectedActividad_especifica" 
+                                #actividad_especificaSelect
+                                #multiSelect>
+                      <div class="options">
                         <button 
                         mat-raised-button 
                         class="mat-primary fill text-sm" 
-                        (click)="selectAll(integrantesSelect, integrantesList, selectedIntegrantes)">
+                        (click)="selectAll(actividad_especificaSelect, actividad_especificaList, selectedActividad_especifica)">
                         Selecciona todo
                         </button>
                         <button 
                         mat-raised-button 
-                        class="mat-accent fill text-sm" 
-                        (click)="deselectAll(integrantesSelect)">
+                        class="mat-warn fill text-sm" 
+                        (click)="deselectAll(actividad_especificaSelect)">
                         Elimina a todos
                         </button>
-                          <mat-option  
-                                      [value]="integrantes" 
-                                      *ngFor="let integrantes of integrantesList" 
-                                      >
-                                      {{integrantes}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
+                      </div>
 
-                        <p>
-                          Lider de Equipo: {{lider.value}}
-                        </p>
+                      <mat-option  
+                                  [value]="actividad_especifica" 
+                                  *ngFor="let actividad_especifica of actividad_especificaList" 
+                                  >
+                                  {{actividad_especifica}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-divider></mat-divider>
 
-                        <p >
-                          Integrantes de equipo
-                        </p>
-
-                        <ul  
-                        *ngFor="let integrantes of integrantesSelect?.value">
-                          {{integrantes}}
-                        </ul>
-
-
-    
-                    </form>
-                  </mat-step>
-
-                  <mat-step>
-                      <form>
-                        <ng-template matStepLabel>Actividades</ng-template>
-
-                        <mat-form-field class="col-md-12 date" appearance="fill" [formGroup]="FechaFormGroup">
-                          <mat-label>Ingrese Fecha de Actividad</mat-label>
-                          <input matInput [matDatepicker]="picker">
-                          <div>
-                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                          </div>
-      
-                        </mat-form-field>
-
-                        <mat-form-field  class="col-md-12" appearance="fill" [formGroup]="SegmentoFormGroup">
-                            <mat-label>Segmento Realizado</mat-label>
-                            <mat-select>
-                              <mat-option value="primary">CONEXIONES NUEVAS BT</mat-option>
-                              <mat-option value="primary">REINSTALACION DE SERVICIO RS</mat-option>
-                              <mat-option value="primary">ACTIVIDADES COMERCIALES COMPLEMENTARIAS AC</mat-option>
-                              <mat-option value="primary"> ... </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-
-                        <mat-form-field  class="col-md-12" appearance="fill" [formGroup]="ActividadFormGroup">
-                          <mat-label>Seleccione Actividad Realizada (puede ser mas de uno)</mat-label>
-                          <mat-select>
-                            <mat-option value="primary">Aéreo Monofásico</mat-option>
-                            <mat-option value="primary">Aéreo Trifásico</mat-option>
-                            <mat-option value="primary">Subterráneo Monofásico sin rotura ni resane de vereda</mat-option>
-                            <mat-option value="primary"> ... </mat-option>
-                          </mat-select>
-                        </mat-form-field>
-
-                          <!-- <mat-label class="col-md-12" style="text-align: center;" [formGroup]="CantidadFormGroup">Cantidades</mat-label>
-                          <ul class="col-md-12" style="text-align: center;">Solo puede ingresar cantidades en número</ul>
+                  <label>Cantidades realizadas</label>
+                    <div class="cantidad">
+                      <div class="item-cantidad">
+                        Urbano
+                        <input type="number" [formControl]="rural" class="form-control col-md-6" required>
+                      </div>
+                      <div class="item-cantidad">
+                        Rural
+                        <input type="number" [formControl]="urbano" class="form-control col-md-6 " required>
+                      </div>
+                    </div >
+                  <tr class="td-actividad">
+                    <button type="button"
+                            (click)="agregarActividades()"
+                            class="actividad-button add"
+                            matTooltip="Agregar nueva actividad">
+                            Añadir actividad
+                      <mat-icon>add</mat-icon>
+                    </button>
+                  </tr>
 
 
-                          <mat-form-field  class="col-md-6" appearance="fill" >
-                            <mat-label>Cantidad URBANO</mat-label>
-                            <input matInput type="number">
-                          </mat-form-field>
-                          <mat-form-field class="col-md-6"  appearance="fill">
-                            <mat-label>Cantidad RURAL</mat-label>
-                            <input matInput type="number">
-                          </mat-form-field> -->
+                  <div *ngFor="let actividad of actividades().controls; let i=index" [formGroupName]="i">
 
+                     <ul>Fecha Ingresada  <mat-icon>check_circle_outline</mat-icon></ul> 
+                        <textarea style="text-align: center;" formControlName="fecha_actividad" class="form-control" [ngModel]="todayDate |  date:'shortDate'"> </textarea>
 
-                          <div class="col-md-12" style="text-align: center;" [formGroup]="CantidadFormGroup" >
-                            <mat-label>Cantidades</mat-label> (Click en (+) para agregar nueva tasa)
-                            <table class="form-cantidad table"  formArrayName="cantidades">
-                              <tr>
-                                <td>
-                                  Urbano
-                                  <input type="number" [formControl]="rural" class="form-control col-md-6" required>
-                                </td>
-                                <td>
-                                  Rural
-                                  <input type="number" [formControl]="urbano" class="form-control col-md-6" required>
-                                </td>
-                                <td class="td-cantidad">
-                                  <button type="button"
-                                          (click)="agregarCantidades()"
-                                          class="cantidad-button add"
-                                          matTooltip="Agregar nueva cantidad">
-                                    <mat-icon>add</mat-icon>
-                                  </button>
-                                </td>
-                              </tr>
-                              <tr *ngFor="let cantidad of cantidades().controls; let i=index" [formGroupName]="i">
-                                <td class="td-label">
-                                  <label>Cantidad de Rural agregada</label>  <mat-icon>check_circle_outline</mat-icon>
-                                    <input type="number" formControlName="cantidad_rural" class="form-control">
-                                    {{ value }}
+                     <ul>Segmento agregado  <mat-icon>check_circle_outline</mat-icon></ul> 
+                        <textarea style="text-align: center;"  formControlName="detalle_segmento" class="form-control" ></textarea>
 
-                                </td>
-                                <td class="td-label">
-                                  <label>Cantidad en Urbano agregado</label> <mat-icon>check_circle_outline</mat-icon>
-                                    <input type="number" formControlName="cantidad_urbano" class="form-control">
-                                </td>
-                                <td class="td-cantidad">
-                                    <button (click)="quitarCantidades(i)"
-                                            class="cantidad-button delete"
-                                            matTooltip="Eliminar cantidad"
-                                            type="button">
-                                      <mat-icon>delete</mat-icon>
-                                    </button>
-                                </td>
-                              </tr>
-                            </table>
-                          </div>
+                    <ul>Actividad específica agregada  <mat-icon>check_circle_outline</mat-icon></ul> 
+                        <textarea style="text-align: center;"  formControlName="detalle_actividad" class="form-control"></textarea>
+                    
+                    <label>Cantidades realizadas</label>
+                    <div class="cantidad">
+                      <div class="item-cantidad">
+                      <ul>Cantidad de Rural agregada  <mat-icon>check_circle_outline</mat-icon></ul>
+                          <input style="text-align: center;"  formControlName="cantidad_rural" class="form-control col-md-6">
+                      </div> 
+                      <div class="item-cantidad">
+                       <ul>Cantidad en Urbano agregado <mat-icon>check_circle_outline</mat-icon></ul> 
+                          <input style="text-align: center;"  formControlName="cantidad_urbano" class="form-control col-md-6">
+                      </div>
+                    </div>
 
-                      </form>
-                  </mat-step>
-
-                  <mat-step>
-                    <ng-template matStepLabel>ENVIAR</ng-template>
-                    Para enviar el FORMULARIO haga click en "Guardar"
                     <div>
-                    <!-- <button mat-button matStepperPrevious>Anterior</button> -->
-                    <div class="options col-12 justify-content-center">
-                        <button
-                            mat-flat-button
-                            class="mt-4 m-1 mb-3 col-xs-3 br-40px"
-                            type="button"
-                            color="primary"
-                            >
-                            Guardar<mat-icon class="icon">save</mat-icon>&nbsp;
+                      <div class="col-md-12">
+                        <button (click)="quitarActividades(i)"
+                                class="actividad-button delete"
+                                matTooltip="Eliminar cantidad"
+                                type="button">
+                                Eliminar Actividad
+                          <mat-icon>delete</mat-icon>
                         </button>
+                      </div>
                     </div>
-                      <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
-                    </div>
-                  </mat-step>
-              </mat-vertical-stepper>
+                  </div>
+                  
+                </div> 
+              </table>
+            </form>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>ENVIAR</ng-template>
+
+          <!-- <ul>RESUMEN DE ACTIVIDAD</ul>
+
+            <div class="marco-resumen">
+              <label>Sede</label>
+              <ul>
+                <mat-chip-list>
+                  <mat-chip>
+                    {{sede.value}}
+                  </mat-chip>
+                </mat-chip-list>  
+              </ul>
+            </div>
+
+            <div class="marco-resumen">
+              <label>Lider de Equipo</label>
+              <ul>
+                <mat-chip-list>
+                  <mat-chip>
+                    {{lider.value}}
+                  </mat-chip>
+                </mat-chip-list>    
+              </ul>
+            </div>
+
+
+            <div class="marco-resumen">
+              <label>Cuadrilla</label>
+              <ul>
+                <mat-chip-list>
+                  <mat-chip  *ngFor="let integrantes of integrantesSelect?.value">
+                    {{integrantes}}
+                  </mat-chip>
+                </mat-chip-list>
+              </ul>            
+            </div>
+          
+
+            <mat-divider></mat-divider>
+
+            <div class="marco-resumen">
+              <label>Fecha de Actividad</label>
+              <ul>
+                {{fecha_act.value |  date:'shortDate'}}
+              </ul>            
+            </div>
+
+            <div class="marco-resumen">
+              <label>Segmento</label>
+              <ul>
+                <mat-chip-list>
+                  
+                </mat-chip-list>
+              </ul>            
+            </div>
+           -->
+
+
+
+          Si esta seguro de los datos ingresados haga click en "Enviar"
+          <div>
+          <!-- <button mat-button matStepperPrevious>Anterior</button> -->
+          <div class="options col-12 justify-content-center">
+              <button
+                  mat-flat-button
+                  class="mt-4 m-1 mb-3 col-xs-3 br-40px"
+                  type="button"
+                  color="primary"
+                  >
+                  Enviar<mat-icon class="icon">send</mat-icon>&nbsp;
+              </button>
           </div>
-      </div>     
-  </form>
-      
-      
-      
-          <!-- <button mat-flat-button
-              class="mt-4 m-1 mb-3"
-              type="button"
-              color="primary"
-              >
-              Generar PDF<mat-icon class="icon">picture_as_pdf</mat-icon>&nbsp;
-          <input #inputfile type="file" name="file" id="file" class="inputfile" (change)="clearNameInput()" accept=".pdf">
-          <mat-label class="btn" for="file">
-          {{nameLabel}}
-          </mat-label>
-          <mat-icon>upload</mat-icon>&nbsp;
-          </button> -->
-      
-      <!-- <div class="options col-12 justify-content-center">
-          <button
-              mat-flat-button
-              class="mt-4 m-1 mb-3 col-xs-3 br-40px"
-              type="button"
-              color="warn"
-              (click)="cerrar()"
-              >
-              Cerrar<mat-icon class="icon">close</mat-icon>&nbsp;
-          </button>
-      </div> -->
+            <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+    </div>
+  </div>     
+</form>
       
       
   <ngx-spinner
