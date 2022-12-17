@@ -1,22 +1,33 @@
-<div class="cont-titulo">
-  <div class="fondo-dialog">
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-  </div>
-
-  <p class="titulo">{{titulo | uppercase}}</p>
-
-  <button class="close" (click)="cerrar()" alt="">
-    <mat-icon>close</mat-icon>
-  </button>  
-
-  <button mat-stroked-button
-    color="$sunarp-gray-dark"
-    class="bg-white border-none button-bold"
-    (click)="cerrar()">
-    <mat-icon class="icon">arrow_back</mat-icon>&nbsp;Regresar
-  </button>
+<h2 mat-dialog-title>Install Angular</h2>
+<mat-dialog-content>
+<div>
+  <a href="https://github.com/angular/components/issues/4609#issuecomment-485891133=">
+  angular components issue #4609
+  </a><br>
+content<br>
+content<br>
+content<br>
+content<br>
+content<br>
+content<br>
+content<br>
+content<br>
+content<br>
+content<br>
+content<br>
+content<br>
+content<br>
+content<br>
+content<br>
+content<br>
 </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+</mat-dialog-actions>
 
+
+<!-- Copyright 2018 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

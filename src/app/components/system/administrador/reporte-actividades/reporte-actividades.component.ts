@@ -133,30 +133,14 @@ export class ReporteActividadesComponent implements OnDestroy , OnInit {
   }
 
   abrirDetalle(){
-    const dialogRef = this.dialog.open(DetalleCuadrilla,{
-      data:{
-        message: 'Are you sure want to delete?',
-        buttonText: {
-          ok: 'Save',
-          cancel: 'No'
-        }
-      }
-    });
-    const snack = this.snackBar.open('Snack bar open before dialog');
-
-    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
-      if (confirmed) {
-        snack.dismiss();
-        const a = document.createElement('a');
-        a.click();
-        a.remove();
-        snack.dismiss();
-        this.snackBar.open('Closing snack bar in a few seconds', 'Fechar', {
-          duration: 2000,
-        });
-      }
-    });
-  }
+    const dialogRef = this.dialog.open(DetalleEvidenciaComponent
+      , {height: '400px'}
+      );
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+    }
 
 }
 

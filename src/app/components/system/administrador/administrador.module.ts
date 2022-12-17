@@ -32,6 +32,9 @@ import { DetalleCuadrilla } from './reporte-actividades/detalle-cuadrilla';
   providers: [
     { provide: LOCALE_ID, useValue: 'es' },
     { provide: MAT_DATE_LOCALE, useValue: 'es-PE' },
+  ],
+  entryComponents: [
+    DetalleEvidenciaComponent// <--- Aquí
   ]
 })
 

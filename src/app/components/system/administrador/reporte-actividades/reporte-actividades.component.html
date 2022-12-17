@@ -72,8 +72,8 @@
       <thead>
         <tr >
           <th>Sede</th>
-          <th>Lider de Equipo</th>
-          <th>Cuadrilla</th>
+          <!-- <th>Lider de Equipo</th>
+          <th>Cuadrilla</th> -->
           <th>Segmento</th>
           <th>Actividades Realizadas</th>
           <th>Cantidades Ejecutadas Urbanas</th>
@@ -85,14 +85,14 @@
       <tbody *ngIf="actos?.length !=0">
         <tr *ngFor="let acto of actos" class="text-center align-middle border-bottom ">
           <td>{{acto.sede}}</td>
-          <td>{{acto.lider}}</td>
+          <!-- <td>{{acto.lider}}</td>
           <td>
             <mat-chip-list>
               <mat-chip>
                 {{acto.integrantes}}
               </mat-chip>
             </mat-chip-list>
-          </td>
+          </td> -->
           <td>{{acto.segmento}}</td>
           <td>{{acto.actividad_especifica}}</td>
           <td>{{acto.urbano}}</td>
