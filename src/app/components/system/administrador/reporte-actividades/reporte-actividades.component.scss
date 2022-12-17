@@ -14,14 +14,10 @@
 // }
 
 .descargar-all{
-    background: g.$ingetec-aprobe;
-    width: 100%;
-    color: #ffff;
-    font-family: 'Montserrat';
-    // mat-icon{
-    //     // width: 100%;
-    //     // color: #ffff;
-    // }
+    width: 50%;
+    button{
+        background: g.$ingetec-cyan !important;
+    }
 }
 
 .mat-form-field-appearance-fill .mat-form-field-flex {
@@ -34,63 +30,74 @@
 .form-filtro{
     border-radius: 2rem;
     border-style: dotted;
-    border-width: 2px;
+    border-width: 4px;
     border-color: g.$ingetec-aprobe;
-    width: 90%;
-    padding: 2rem;
-    margin: 0 0 2rem 0;
+    // width: 80%;
+    // height: 10%;
+    // padding: 1rem;
+    margin: 1.5rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
+.text-filtro{
+    font-size: 1.5rem;
+    color: g.$ingetec-aprobe;
+    font-weight: bold;
+    font-family: 'Montserrat';
+}
 
-
-    
-    .rango{
-      display: flex;
-
-    //   border: solid 1.5px g.$ingetec-green;
-      padding: 2rem 0 0 0;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 1rem 1rem;
-      align-content: center;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-
-    }
-
-    .items-busqueda{
-        display: flex;
-        flex-direction: row;
+.items-busqueda{
+    display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
-    align-items: center;
-    }
-    mat-form-field{
-        color: g.$ingetec-green;
-        font-size: 2rem;
-        // background: #ffff;
-
-    } 
-
-    mat-label{
-        color: rgb(0, 0, 0);
-        font-size: 1.3rem;
-    } 
-
-    mat-datepicker-toggle{
-        color: rgb(0, 0, 0);
-    }
-    mat-datepicker{
-        font-size: 2rem;
-    }
+    align-items: flex-start;
     button{
-        width: 100%;
+        // width: 70%;
         background-color: g.$ingetec-aprobe;
-        padding: 0.4rem;
-        border-radius: 3rem;
-        margin: 1rem 0;
+        padding: 1em;
+        margin: 1.2rem 0;
+        border-radius: 1rem;
+        // margin: 1rem 0;
+        border: none;
+        color: white;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        align-items: flex-start;
+    }
+}
+mat-form-field{
+    color: g.$ingetec-green;
+    font-size: 2rem;
+    // background: #ffff;
+
+} 
+
+mat-label{
+    font-size: 1.4rem;
+} 
+
+mat-datepicker-toggle{
+    color: g.$ingetec-aprobe;
+}
+mat-datepicker{
+    font-size: 2rem;
+}
+.dercargar-all{
+    button{
+        // width: 70%;
+        background-color: g.$ingetec-gray-dark;
+        padding: 1em;
+        border-radius: 1rem;
+        // margin: 1rem 0;
         border: none;
         color: white;
         display: flex;
@@ -100,3 +107,4 @@
         justify-content: center;
         align-items: center;
     }
+}

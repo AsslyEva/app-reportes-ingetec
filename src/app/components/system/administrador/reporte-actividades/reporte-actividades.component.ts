@@ -4,8 +4,10 @@ import { Subject } from 'rxjs';
 import { ADTSettings } from 'angular-datatables/src/models/settings';
 import { HttpClient } from '@angular/common/http';
 import { DetalleEvidenciaComponent } from './detalle-evidencia/detalle-evidencia.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DetalleCuadrilla } from './detalle-cuadrilla';
 
 
 
@@ -87,6 +89,7 @@ export class ReporteActividadesComponent implements OnDestroy , OnInit {
   constructor(
     public dialog: MatDialog,
     private fb:FormBuilder,
+    private snackBar: MatSnackBar,
 
     // private httpClient: HttpClient  
     ) {
@@ -130,13 +133,31 @@ export class ReporteActividadesComponent implements OnDestroy , OnInit {
   }
 
   abrirDetalle(){
-    const dialogRef = this.dialog.open(DetalleEvidenciaComponent, {
-      width: '100%',
-      // height:'100%',
-      autoFocus: false,
-      disableClose: true,
-      panelClass: 'myapp-no-padding-dialog',
-      // data: {acto: datos}
+    const dialogRef = this.dialog.open(DetalleCuadrilla,{
+      data:{
+        message: 'Are you sure want to delete?',
+        buttonText: {
+          ok: 'Save',
+          cancel: 'No'
+        }
+      }
+    });
+    const snack = this.snackBar.open('Snack bar open before dialog');
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        snack.dismiss();
+        const a = document.createElement('a');
+        a.click();
+        a.remove();
+        snack.dismiss();
+        this.snackBar.open('Closing snack bar in a few seconds', 'Fechar', {
+          duration: 2000,
+        });
+      }
     });
   }
+
 }
+
+

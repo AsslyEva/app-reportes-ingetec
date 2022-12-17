@@ -1,4 +1,4 @@
-<div class="content-body">
+<div class="content-inicio">
 
   <app-title-frame
   [title]="'REPORTE DE ACTIVIDADES COMERCIALES'"
@@ -13,7 +13,7 @@
       <div class="filtro">
         <div class="items-busqueda">
 
-          <mat-form-field class="form-item col-md-6" appearance="outline">
+          <mat-form-field class="form-item" appearance="outline">
             <mat-label>Segmento</mat-label>
             <mat-select 
                         placeholder="Ingresa registra"
@@ -24,7 +24,7 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field class="form-item col-md-6" appearance="outline">
+          <mat-form-field class="form-item" appearance="outline">
             <mat-label>Lider de Equipo</mat-label>
             <mat-select 
                         placeholder="Ingresa registra"
@@ -34,10 +34,8 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-        </div>
-        
-        <div class="rango">
-          <mat-form-field appearance="outline">
+
+          <mat-form-field class="form-item" appearance="outline">
             <mat-label>Fecha inicial</mat-label>
             <input matInput
                     [matDatepicker]="fecInicio"
@@ -55,16 +53,18 @@
             <mat-datepicker #fecfin></mat-datepicker>
 
           </mat-form-field>
+          
+          <button matt-button >BUSCAR
+            <mat-icon>search</mat-icon>
+          </button>
         </div>
 
-        <button matt-button >Buscar
-          <mat-icon>search</mat-icon>
-        </button>
-
       </div>
+
+
   </form>
 
-  <div class="content-tabla col-12">
+  <div class="content-tabla col-12 ">
     <table 
            datatable
            [dtOptions]="dtOptions"
@@ -100,46 +100,36 @@
           <td>{{acto.fecha | date:'dd/MM/yyyy'}}</td>
           <td>
             <div class="options">
-              <!-- <div class="button-option view">
+              <div class="button-option view">
                 <button
                   mat-flat-button
                   color="primary"
                   class="menu-button bg-blue"
-                  matTooltip="Ver evidencia"
+                  matTooltip="Ver cuadrilla"
                   (click)="abrirDetalle()"
                   >
+                  Ver
                   <mat-icon> visibility </mat-icon>
                 </button>
-                <span class="text-button">Ver</span>
-              </div> -->
-
-              <div class="button-option download ">
-                <button
-                    mat-flat-button
-                    color="primary"
-                    class="menu-button gb-yellow"
-                    matTooltip="Descargar">
-                    <mat-icon> download </mat-icon>
-                  </button>
-                  <span class="text-button">Descargar</span>
               </div>
+
             </div>
           </td>
         </tr>
       </tbody>
     </table>
-  </div>
-
-  <div class="button-option download text-center align-middle border-top pt-5">
-    <button
-        mat-flat-button
-        class="descargar-all"
+    <div class="dercargar-all col-12  d-flex justify-content-center">
+      <button
         matTooltip="Descargar todo">
-        <mat-icon> download </mat-icon>
         <span class="text-button">Descargar toda la Tabla</span>
-
+  
+        <mat-icon> download </mat-icon>
       </button>
+    </div>
   </div>
+
+
+
 </div>
 
 <ngx-spinner

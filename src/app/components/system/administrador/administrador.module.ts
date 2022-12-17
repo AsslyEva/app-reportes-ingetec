@@ -10,6 +10,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { VerDetalleComponent } from './reporte-evidencia/ver-detalle/ver-detalle.component';
 import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { DetalleEvidenciaComponent } from './reporte-actividades/detalle-evidencia/detalle-evidencia.component';
+import { DetalleCuadrilla } from './reporte-actividades/detalle-cuadrilla';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { DetalleEvidenciaComponent } from './reporte-actividades/detalle-evidenc
     ReporteEvidenciaComponent,
     VerDetalleComponent,
     DetalleEvidenciaComponent,
+    DetalleCuadrilla
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es' },
